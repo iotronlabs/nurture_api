@@ -13,7 +13,7 @@ class CreateTableClasTable extends Migration
      */
     public function up()
     {
-        Schema::create('table_clas', function (Blueprint $table) {
+        Schema::create('table_class', function (Blueprint $table) {
             $table->bigIncrements('class_id')->length(10)->unique();
             $table->string('t_ref_id')->length(10)->nullable();
             $table->string('class_name')->length(100);
@@ -31,6 +31,6 @@ class CreateTableClasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('table_clas');
+        Schema::dropIfExists('table_class');
     }
 }
