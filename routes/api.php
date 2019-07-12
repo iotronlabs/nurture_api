@@ -57,17 +57,39 @@ Route::group([ 'prefix' =>'/students',
              {
                 Route::post('/register','students\Auth\RegisterController@register');
                 // Route::get('/login','students\Auth\LoginController@login');
-                // Route::get('/','students\StudentController@index');
+                 Route::get('/','students\StudentController@index');
                 // Route::get('/me','students\StudentController@usercheck');
                 // Route::post('/out','students\StudentController@userlogout');
-                // Route::get('/{s_id}/show',  'students\StudentController@show');
-                // Route::get('/{s_id}/edit', 'students\StudentController@edit');
-                // Route::post('/{s_id}','students\StudentController@update');
-                // Route::delete('/{s_id}','students\StudentController@destroy');
+                 Route::get('/{s_id}/show',  'students\StudentController@show');
+                 Route::get('/edit/{s_id}', 'students\Auth\RegisterController@edit');
+                 Route::post('/update/{s_id}','students\Auth\RegisterController@update');
+                 Route::delete('/{s_id}','students\StudentController@destroy');
 
 
                 // Route::get('/show_exam/{student}','students\StudentController@show_exam');
 
+
+             }
+
+);
+Route::group([ 'prefix' =>'/facultyheads',
+             [ 'middleware' =>'auth_users','jwt.auth' ]],function()
+             {
+                Route::post('/register','facultyheads\FacultyHeadRegisterController@register');
+               
+
+                
+
+             }
+
+);
+
+
+Route::group([ 'prefix' =>'/faculty',
+             [ 'middleware' =>'auth_users','jwt.auth' ]],function()
+             {
+                Route::post('/register','faculty\RegisterFacultyController@register');
+                
 
              }
 

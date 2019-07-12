@@ -1,15 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\api\faculty_heads;
+namespace App\Http\Controllers\api\facultyheads;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\faculty\user_faculty_head;
+use Auth;
+use Config;
+use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Foundation\Auth\RegistersUsers;
 use Tymon\JWTAuth\Facades\JWTAuth;
-use Config;
-use Auth;
 
 class FacultyHeadRegisterController extends Controller
 {
@@ -55,7 +56,7 @@ class FacultyHeadRegisterController extends Controller
     {
         return Validator::make($data, [
             'faculty_head_fname' => ['required', 'string', 'max:255'],
-            'faculty_head_email' => ['required', 'string', 'email', 'max:255','unique:user_students'],
+            'faculty_head_email' => ['required', 'string', 'email', 'max:255','unique:user_faculty_heads'],
             'password' => ['required', 'string', 'min:5'],
             'faculty_head_gender' => ['required', 'max:1'],
             'faculty_head_contact' => ['required', 'min:10'],
@@ -116,7 +117,7 @@ class FacultyHeadRegisterController extends Controller
 
 
 
-      $request = request();
+    // /         $request = request();
 
               // $profileImage = $request->file('faculty_head_profile_picture');
               // $profileImageSaveAsName = time() . Auth::id() . "-profile." .
@@ -128,9 +129,9 @@ class FacultyHeadRegisterController extends Controller
 
 
 
-        return user_student::create([
+        return user_faculty_head::create([
             'faculty_head_fname' => $data['faculty_head_fname'],
-            'faculty_head_surname' => $data['faculty_head_surname'],
+            // 'faculty_head_surname' => $data['faculty_head_surname'],
             'faculty_head_email' => $data['faculty_head_email'],
             'password' => Hash::make($data['password']),
             'faculty_head_gender' => $data['faculty_head_gender'],
@@ -155,6 +156,3 @@ class FacultyHeadRegisterController extends Controller
 }
 
 
-
-}
-}

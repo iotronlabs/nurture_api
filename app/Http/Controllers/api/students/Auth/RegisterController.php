@@ -94,7 +94,7 @@ class RegisterController extends Controller
            return response()->json
            ([
                'success' =>  true,
-               'data' =>$user->c_centre,
+               'data' =>$user,
                // 'token' => $token
            ],200);
        }
@@ -177,6 +177,76 @@ class RegisterController extends Controller
 
         ]);
     }
+    public function edit($s_id)
+  {
+
+     $project = user_student::find($s_id);
+
+     return response()->json
+           ([
+               'success' =>  true,
+               'data' => $project,
+
+           ],200);
+  }
+
+public function update(Request $request, $s_id)
+{
+
+
+        $task = user_student::findOrFail($s_id);
+
+        $this->validate($request, [
+          's_email' => 'required',
+          's_gender' => 'required',
+          's_fname' =>  'required',
+          // 's_mname' =>  'required',
+            's_contact'  => 'required',
+          's_dob' =>    'required',
+          's_surname' => 'required',
+    
+          's_address'  => 'required',
+          's_address_city' => 'required',
+          's_address_state'=> 'required',
+          's_address_pin' => 'required',
+          'guardian_fname' => 'required',
+          // 'guardian_mname' => 'required',
+          'guardian_surname' => 'required',
+          'guardian_email' => 'required',
+          'guardian_contact' => 'required',
+          'guardian_address' => 'required',
+          'guardian_state' => 'required',
+          'guardian_pin' => 'required',
+          // 'guardian_state' => 'required',
+          'guardian_city' => 'required',
+          's_centre' => 'required',
+          's_class' => 'required',
+          'fee_structre' => 'required',
+          'scholarship' => 'required',
+          'fee_period' => 'required',
+          's_profile_picture' => 'required',
+          'status' => 'required',
+
+            
+            
+
+               //edit here if required to update content//
+        ]);
+
+        $input = $request->all();
+
+        $task->fill($input)->save();
+
+
+         return response()->json
+               ([
+                   'success' =>  true,
+                   'data' => $task,
+
+               ],200);
+
+
+}
 }
 
 

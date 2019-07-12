@@ -13,7 +13,7 @@ class CreateUserFacultys extends Migration
      */
     public function up()
     {
-        Schema::create('user_facultys', function (Blueprint $table) {
+        Schema::create('user_faculties', function (Blueprint $table) {
             $table->engine = 'InnoDB';
 
             $table->bigIncrements('faculty_id')->length(10)->unique();
@@ -50,6 +50,6 @@ class CreateUserFacultys extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_facultys');
+        Schema::dropIfExists('user_faculties');
     }
 }
