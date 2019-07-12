@@ -18,12 +18,10 @@ class RegisterCourseController extends Controller
     {
         return Validator::make($data, [
            // 'class_id' => ['required', 'string', 'max:255'],
-            't_id' => ['required', 'string',  'max:255'],
-            'sub_name' => ['required', 'string', 'min:1'],
-            'sem' => ['required'],
-            
-            'current_sem' => ['required'],
-            'c_day' => ['required'],
+           
+            'course_name' => ['required', 'string', 'min:1'],
+           
+            'course_duration' => ['required'],
 
             
 
@@ -47,17 +45,9 @@ class RegisterCourseController extends Controller
                'success' =>  true,
                'data' => [
 
-                'sub_id'  => 'SUB - '.$user->id.'',
-            	'class_id' =>$user->class_id,
-            	
-               	//'t_ref_id' => $user-?t_ref_id,
-               	't_id' => $user->t_id,
-               	'sub_name'  => $user->sub_name,
-               	'current_sem' => $user->current_sem,
-                'status' => $user->status,
-         				'c_day' => $user->c_day,
-         				'time_start' => $user->time_start,
-         				'time_end' => $user->time_end,
+               	'course_name'  => $user->course_name,
+               	'course_duration' => $user->course_duration,
+                
                ]
                //'token' => $token
            ],200);
@@ -78,19 +68,11 @@ class RegisterCourseController extends Controller
 
 
         return table_course::create([
-            'class_id' => $data['class_id'],
-             't_id' => $data['t_id'],
-              'sub_name' => $data['sub_name'],
-            'sem' => $data['sem'],
-            
-            'current_sem' => $data['current_sem'],
-            'c_day' => $data['c_day'],
-            'time_start' => $data['time_start'],
-            'time_end' => $data['time_end'],
            
-
-
-
+              'course_name' => $data['course_name'],
+           
+            'course_duration' => $data['course_duration'],
+          
         ]);
     }
 }
