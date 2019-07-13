@@ -39,9 +39,16 @@ return [
     'guards' => [
        
 
-        'user_admins' => [
+        'admins' => [
             'driver' => 'jwt',
             'provider' => 'user_admins',
+            
+        ],
+
+
+        'sub_admins' => [
+            'driver' => 'jwt',
+            'provider' => 'user_sub_admins',
             
         ],
 
@@ -51,15 +58,15 @@ return [
             
         ],
 
-         'user_teachers' => [
+         'faculties' => [
             'driver' => 'jwt',
-            'provider' => 'user_teachers',
+            'provider' => 'user_faculties',
             
         ],
 
-        'user_staffs' => [
+        'faculty_heads' => [
             'driver' => 'jwt',
-            'provider' => 'user_staffs',
+            'provider' => 'user_faculty_heads',
             
         ],
 
@@ -102,9 +109,19 @@ return [
             'model' => App\Models\User::class,
         ],
 
-        'user_admins' => [
+        'user_faculties' => [
             'driver' => 'eloquent',
-            'model' => App\Models\admin\user_admin::class,
+            'model' => App\Models\faculty\user_faculty::class,
+        ],
+
+        'user_faculties' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\faculty\user_faculty_head::class,
+        ],
+
+        'user_sub_admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\sub_admin\user_sub_admin::class,
         ],
 
         'user_students' => [
@@ -112,14 +129,9 @@ return [
             'model' => App\Models\student\user_student::class,
         ],
 
-        'user_teachers' => [
+        'user_admins' => [
             'driver' => 'eloquent',
-            'model' => App\Models\teacher\user_teacher::class,
-        ],
-
-        'user_staffs' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\staff\user_staff::class,
+            'model' => App\Models\user_admin::class,
         ],
 
         // 'users' => [

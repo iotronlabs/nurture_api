@@ -42,7 +42,7 @@ class RegisterFacultyController extends Controller
 
       protected function guard()
      {
-    //     return Auth::guard('students');
+       return Auth::guard('faculties');
      }
 
 

@@ -40,10 +40,10 @@ class FacultyHeadRegisterController extends Controller
     }
 
 
-    //   protected function guard()
-    // {
-    //     return Auth::guard('students');
-    // }
+      protected function guard()
+    {
+        return Auth::guard('faculty_heads');
+    }
 
 
     /**
