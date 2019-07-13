@@ -1,28 +1,28 @@
 <?php
 
-namespace App\Http\Controllers\api\courses;
+namespace App\Http\Controllers\api\centres;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\course\table_course;
+use App\Models\centre\table_centre;
+use Illuminate\Http\Request;
 
 
-class CourseUpdateController extends Controller
+class CentreUpdateController extends Controller
 {
-   
+  
 	 public function index()
     {
-        $user_details=table_course::all();
-        return $user_details;
+        $user=table_centre::all();
+        return $user;
     }
 
 
 
 
 
-     public function show(Request $request,$course_id)
+     public function show(Request $request,$centre_id)
     {
-      $user= table_course::findorfail($course_id);
+      $user= table_centre::findorfail($centre_id);
       return response()->json
            ([
                'success' =>  true,
@@ -33,9 +33,9 @@ class CourseUpdateController extends Controller
       
     } 
 
-  public function edit($course_id)
+  public function edit($centre_id)
   {
-     $project = table_course::find($course_id);
+     $project = table_centre::find($centre_id);
      return response()->json
            ([
                'success' =>  true,
@@ -44,13 +44,12 @@ class CourseUpdateController extends Controller
            ],200);
   }
 
-public function update(Request $request, $course_id)
+public function update(Request $request, $centre_id)
 {
-		  	$task = table_course::findOrFail($course_id);
+		  	$task = table_centre::findOrFail($centre_id);
 		    $this->validate($request, [
-		    	'course_name'=> 'required',
-		    	'course_duration' => 'required',
-
+		    	'centre_name'=> 'required',
+		    	
 		    ]);
 
 		    $input = $request->all();
@@ -66,9 +65,9 @@ public function update(Request $request, $course_id)
 }
 
 
-		public function destroy($sub_id)
+		public function destroy($centre_id)
 		{
-			    $task = table_course::findOrFail($sub_id);
+			    $task = table_centre::findOrFail($centre_id);
 
 			    $task->delete();
 			//dd($task);

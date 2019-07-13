@@ -105,28 +105,6 @@ Route::group([ 'prefix' =>'/faculty',
              }
 
 );
-// Change teacher to faculties
-// Route::group([ 'prefix' =>'/faculties',
-//              [ 'middleware' =>'auth_users','jwt.auth' ]],function()
-//              {
-//                  Route::post('/register','teachers\Auth\RegisterController@register');
-//                  Route::get('/login','teachers\Auth\LoginController@login');
-//                  Route::get('/me','teachers\TeacherController@usercheck');
-//                  Route::get('/{t_id}/show',  'teachers\TeacherController@show');
-//                  Route::get('/{t_id}/edit', 'teachers\TeacherController@edit');
-
-//                 Route::post('/{t_id}','teachers\TeacherController@update');
-
-
-//                  Route::delete('/{t_id}','teachers\TeacherController@destroy');
-
-//                  Route::get('/','teachers\TeacherController@index');
-
-//                  Route::get('/{teacher}','teachers\TeacherController@get_exam');
-
-//              }
-
-// );
 
 // staffs to sub-admins
 Route::group([ 'prefix' =>'/subadmins',
@@ -149,39 +127,33 @@ Route::group([ 'prefix' =>'/subadmins',
 
 );
 
-Route::group([ 'prefix' =>'/forum',
-             ['middleware' =>'auth_users']],function()
+
+
+Route::group([ 'prefix' =>'/courses',
+            ],function()
              {
-
-                 Route::post('/threads','forum\ThreadsController@store');
-                 Route::get('/threads','forum\ThreadsController@index');
-                 Route::get('/threads/{channel}','forum\ThreadsController@index');
-                 Route::get('/channels','forum\ChannelsController@index');
-                 Route::get('/channels/{channel}/','forum\ChannelsController@show');
-                 Route::get('/threads/{channel}/{thread}','forum\ThreadsController@show');
-                 Route::post('/threads/{channel}/{thread}/replies','forum\RepliesController@store');
-                 Route::post('/replies/{reply}/saved','forum\SavedController@store');
-
+                 Route::post('/register','courses\RegisterCourseController@register');
+                 Route::get('/show/{course_id} ',  'courses\CourseUpdateController@show');
+                 Route::get('/edit/{course_id}', 'courses\CourseUpdateController@edit');
+                 Route::post('/update/{course_id}','courses\CourseUpdateController@update');
+                 Route::post('/{course_id}','courses\CourseUpdateController@destroy');
+                 Route::get('/',           'courses\CourseUpdateController@index');
+                // Route::post('/login','classes\LoginController@login');
              }
 
 );
-
-
-
-// Route::post('/register','api\classes\RegisterClassController@register');
-// Route::post('/login','staffs\Auth\LoginController@login');
 
 
 //Route::group(['middleware' => 'cors'], function () {
 Route::group([ 'prefix' =>'/classes',
             ],function()
              {
-                 Route::post('/register','classes\RegisterClassController@register');
-                  Route::get('/{class_id}/show',  'classes\ClassesUpdateController@show');
-                 Route::get('/{class_id}/edit', 'classes\ClassesUpdateController@edit');
-                 Route::post('/{class_id}','classes\ClassesUpdateController@update');
-                 Route::delete('/{sub_id}','classes\ClassesUpdateController@destroy');
-                 Route::get('/',           'classes\ClassesUpdateController@index');
+                Route::post('/register','classes\RegisterClassController@register');
+                Route::get('/show/{class_id}',  'classes\ClassesUpdateController@show');
+                Route::get('/edit/{class_id}', 'classes\ClassesUpdateController@edit');
+                Route::post('/update/{class_id}','classes\ClassesUpdateController@update');
+                Route::post('/{class_id}','classes\ClassesUpdateController@destroy');
+                Route::get('/',           'classes\ClassesUpdateController@index');
 
 
 
@@ -189,15 +161,17 @@ Route::group([ 'prefix' =>'/classes',
 
 );
 
-Route::group([ 'prefix' =>'/courses',
+
+
+Route::group([ 'prefix' =>'/centres',
             ],function()
              {
-                 Route::post('/register','courses\RegisterCourseController@register');
-                 Route::get('/{sub_id}/show',  'courses\CourseUpdateController@show');
-                 Route::get('/{sub_id}/edit', 'courses\CourseUpdateController@edit');
-                 Route::post('/{sub_id}','courses\CourseUpdateController@update');
-                 Route::delete('/{sub_id}','courses\CourseUpdateController@destroy');
-                 Route::get('/',           'courses\CourseUpdateController@index');
+                 Route::post('/register','centres\RegisterCentreController@register');
+                 Route::get('/show/{centre_id} ',  'centres\CentreUpdateController@show');
+                 Route::get('/edit/{centre_id}', 'centres\CentreUpdateController@edit');
+                 Route::post('/update/{centre_id}','centres\CentreUpdateController@update');
+                 Route::post('/{centre_id}','centres\CentreUpdateController@destroy');
+                 Route::get('/',           'centres\CentreUpdateController@index');
                 // Route::post('/login','classes\LoginController@login');
              }
 

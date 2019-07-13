@@ -1,28 +1,26 @@
 <?php
 
-namespace App\Http\Controllers\api\courses;
+namespace App\Http\Controllers\api\centres;
 
-use App\Models\course\table_course;
-use \Illuminate\Http\Request;
+
+use  Tymon\JWTAuth\Facades\JWTAuth;
 use App\Http\Controllers\Controller;
+use App\Models\centre\table_centre;
+use Auth;
+use Config;
+use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Foundation\Auth\RegistersUsers;
-use  Tymon\JWTAuth\Facades\JWTAuth;
-use Config; 
-use Auth;
+use \Illuminate\Http\Request;
 
-class RegisterCourseController extends Controller
+class RegisterCentreController extends Controller
 {
     protected function validator(array $data)
     {
         return Validator::make($data, [
            // 'class_id' => ['required', 'string', 'max:255'],
            
-            'course_name' => ['required', 'string', 'min:1'],
-           
-            'course_duration' => ['required'],
-
+            'centre_name' => 'required',
             
 
         ]);
@@ -43,13 +41,7 @@ class RegisterCourseController extends Controller
            		
            		
                'success' =>  true,
-               'data' => [
-
-               	'course_name'  => $user->course_name,
-               	'course_duration' => $user->course_duration,
-                
-               ]
-               //'token' => $token
+               'data' => $user,
            ],200);
        }
        return response()->json([
@@ -65,15 +57,10 @@ class RegisterCourseController extends Controller
     protected function create(array $data)
     { 
 
-
-
-        return table_course::create([
+     return table_centre::create([
            
-          'course_name' => $data['course_name'],
-       
-          'course_duration' => $data['course_duration'],
+      'centre_name' => $data['centre_name'],
 
-          
         ]);
     }
 }

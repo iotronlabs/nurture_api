@@ -14,11 +14,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class table_course extends Authenticatable 
 {
      use Notifiable;
-      protected $primaryKey = 'sub_id';
+      protected $primaryKey = 'course_id';
 
 
     protected $guarded =[
-        's_id'];
+        ];
 
     /**
      * The attributes that should be hidden for arrays.
