@@ -42,7 +42,7 @@ class CreateUserStudentsTable extends Migration
 
             $table->string('s_centre')->length(100);
             $table->string('s_course')->length(100);
-            $table->string('s_clas')->length(100)->nullable();
+            $table->string('s_class')->length(100)->nullable();
 
             $table->string('fee_structure')->length(50);
             $table->string('scholarship')->length(50);

@@ -52,6 +52,8 @@ public function destroy($s_id)
 //return redirect()->route('api/teachers/Auth/teacherController');
 }
 
+
+
 	// public function show_exam(user_student $student)
 	// 		{
 				

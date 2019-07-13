@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\api\sub_admins;
 
-use Illuminate\Http\Request;
+use  Tymon\JWTAuth\Facades\JWTAuth;
 use App\Http\Controllers\Controller;
+use App\Models\sub_admin\user_sub_admin;
+use Auth;
+use Config;
+use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Foundation\Auth\RegistersUsers;
-use  Tymon\JWTAuth\Facades\JWTAuth;
-use Config;
-use Auth;
 
 class SubAdminRegisterController extends Controller
 {
@@ -55,7 +56,7 @@ class SubAdminRegisterController extends Controller
     {
         return Validator::make($data, [
             'sub_admin_fname' => ['required', 'string', 'max:255'],
-            'sub_admin_email' => ['required', 'string', 'email', 'max:255','unique:user_students'],
+            'sub_admin_email' => ['required', 'string', 'email', 'max:255','unique:user_sub_admins'],
             'password' => ['required', 'string', 'min:5'],
             'sub_admin_gender' => ['required', 'max:1'],
             'sub_admin_contact' => ['required', 'min:10'],
@@ -128,7 +129,7 @@ class SubAdminRegisterController extends Controller
 
 
 
-        return user_student::create([
+        return user_sub_admin::create([
             'sub_admin_fname' => $data['sub_admin_fname'],
             'sub_admin_surname' => $data['sub_admin_surname'],
             'sub_admin_email' => $data['sub_admin_email'],
@@ -142,7 +143,7 @@ class SubAdminRegisterController extends Controller
             'sub_admin_address_pin' => $data['sub_admin_address_pin'],
             'sub_admin_address_state' => $data['sub_admin_address_state'],
 
-         'sub_admin_centre' => $data['sub_admin_centre'],
+            'sub_admin_centre' => $data['sub_admin_centre'],
 
             'sub_admin_address_city' => $data['sub_admin_address_city'],
 
@@ -158,4 +159,4 @@ class SubAdminRegisterController extends Controller
 
 
 
-}
+

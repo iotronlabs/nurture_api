@@ -19,7 +19,7 @@ class CreateUserFacultyHeads extends Migration
             $table->bigIncrements('faculty_head_id')->length(10)->unique();
             $table->string('t_ref_id')->length(10)->nullable();
             $table->string('faculty_head_fname',100);
-            $table->string('faculty_surname',100)->nullable();
+            $table->string('faculty_head_surname',100)->nullable();
             $table->string('faculty_head_email',100)->unique();
             $table->string('password');
             $table->unsignedBiginteger('faculty_head_contact')->length(10);

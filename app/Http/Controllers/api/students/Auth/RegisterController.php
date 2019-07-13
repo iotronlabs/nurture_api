@@ -160,16 +160,11 @@ class RegisterController extends Controller
             'guardian_state' => $data['guardian_state'],
             's_centre' => $data['s_centre'],
             's_course' => $data['s_course'],
+            's_class' => $data['s_class'],
             'fee_structure' => $data['fee_structure'],
             'scholarship' => $data['scholarship'],
             'fee_period' => $data['fee_period'],
            
-            
-           
-
-
-            
-
             // 's_profile_picture' => $profile_image_url,
 
 
@@ -193,45 +188,41 @@ class RegisterController extends Controller
 public function update(Request $request, $s_id)
 {
 
+       
 
         $task = user_student::findOrFail($s_id);
+
 
         $this->validate($request, [
           's_email' => 'required',
           's_gender' => 'required',
           's_fname' =>  'required',
-          // 's_mname' =>  'required',
-            's_contact'  => 'required',
+          's_contact'  => 'required',
           's_dob' =>    'required',
-          's_surname' => 'required',
-    
           's_address'  => 'required',
           's_address_city' => 'required',
           's_address_state'=> 'required',
           's_address_pin' => 'required',
           'guardian_fname' => 'required',
-          // 'guardian_mname' => 'required',
-          'guardian_surname' => 'required',
           'guardian_email' => 'required',
           'guardian_contact' => 'required',
           'guardian_address' => 'required',
           'guardian_state' => 'required',
           'guardian_pin' => 'required',
-          // 'guardian_state' => 'required',
           'guardian_city' => 'required',
           's_centre' => 'required',
           's_class' => 'required',
-          'fee_structre' => 'required',
+          'fee_structure' => 'required',
           'scholarship' => 'required',
           'fee_period' => 'required',
-          's_profile_picture' => 'required',
-          'status' => 'required',
-
-            
-            
+          // 's_profile_picture' => 'required',
+          // 'status' => 'required',
 
                //edit here if required to update content//
         ]);
+
+
+ // dd($s_id);
 
         $input = $request->all();
 

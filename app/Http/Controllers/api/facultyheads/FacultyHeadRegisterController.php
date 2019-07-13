@@ -131,7 +131,7 @@ class FacultyHeadRegisterController extends Controller
 
         return user_faculty_head::create([
             'faculty_head_fname' => $data['faculty_head_fname'],
-            // 'faculty_head_surname' => $data['faculty_head_surname'],
+            'faculty_head_surname' => $data['faculty_head_surname'],
             'faculty_head_email' => $data['faculty_head_email'],
             'password' => Hash::make($data['password']),
             'faculty_head_gender' => $data['faculty_head_gender'],

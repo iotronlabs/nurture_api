@@ -11,10 +11,10 @@ class AuthenticateStudent
    
     public function handle($request, Closure $next)
     {   
-        if(!Auth::guard('students')->check())
-        {
-            return redirect('/');
-        }
+        // if(!Auth::guard('students')->check())
+        // {
+        //     return redirect('/');
+        // }
         return $next($request);
     }
 }
