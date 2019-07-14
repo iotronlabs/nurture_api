@@ -15,7 +15,7 @@ return [
 
     'defaults' => [
         'guard' => 'students',
-        'guard' => 'user_teachers'
+        'guard' => 'students'
          //'passwords' => 'users',
     ],
 
@@ -131,7 +131,7 @@ return [
 
         'user_admins' => [
             'driver' => 'eloquent',
-            'model' => App\Models\user_admin::class,
+            'model' => App\Models\admin\user_admin::class,
         ],
 
         // 'users' => [

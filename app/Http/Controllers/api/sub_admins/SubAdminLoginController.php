@@ -1,15 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\api\admins\Auth;
+namespace App\Http\Controllers\api\sub_admins;
+
 
 use Illuminate\Http\Request;
-use App\Models\admin\user_admin;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use  Tymon\JWTAuth\Facades\JWTAuth;
 
 use Auth;
-class LoginController extends Controller
+class SubAdminLoginController extends Controller
 {
      use AuthenticatesUsers;
 
@@ -26,12 +27,12 @@ class LoginController extends Controller
     // {
     //     //$this->auth = $auth;
     //      $this->middleware('guest');
-    //      $this->middleware('guest:user_admins');
+    //      $this->middleware('guest:sub_admins');
     // }
 
       protected function guard()
     {
-        return Auth::guard('admins');
+        return Auth::guard('sub_admins');
     }
 
 
@@ -39,7 +40,7 @@ public function login(Request $request)
     {
 
         try{
-            if(!$token= Auth::guard('admins')->attempt($request->only('email','password')) )
+            if(!$token= Auth::guard('sub_admins')->attempt($request->only('email','password')) )
                     {
                         return response()->json
                             ([

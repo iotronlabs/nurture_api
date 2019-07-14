@@ -14,7 +14,7 @@ class user_admin extends Authenticatable implements JWTSubject
 {
      use Notifiable;
 
-    protected $guard = 'user_admins';
+    protected $guard = 'admins';
     /**
      * The attributes that are mass assignable.
      *

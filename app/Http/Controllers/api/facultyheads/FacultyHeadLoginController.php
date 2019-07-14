@@ -1,15 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\api\admins\Auth;
+namespace App\Http\Controllers\api\facultyheads;
 
 use Illuminate\Http\Request;
-use App\Models\admin\user_admin;
+use App\Models\facultyheads\user_faculty_head;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use  Tymon\JWTAuth\Facades\JWTAuth;
-
 use Auth;
-class LoginController extends Controller
+class FacultyHeadLoginController extends Controller
 {
      use AuthenticatesUsers;
 
@@ -31,7 +30,7 @@ class LoginController extends Controller
 
       protected function guard()
     {
-        return Auth::guard('admins');
+        return Auth::guard('faculty_heads');
     }
 
 
@@ -39,7 +38,7 @@ public function login(Request $request)
     {
 
         try{
-            if(!$token= Auth::guard('admins')->attempt($request->only('email','password')) )
+            if(!$token= Auth::guard('faculty_heads')->attempt($request->only('email','password')) )
                     {
                         return response()->json
                             ([

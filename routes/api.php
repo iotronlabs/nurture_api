@@ -55,15 +55,15 @@ Route::group([ 'prefix' =>'/admins',
 Route::group([ 'prefix' =>'/students',
              [ 'middleware' =>'auth_users','jwt.auth' ]],function()
              {
-                 Route::post('/register','students\Auth\RegisterController@register');
-                // Route::get('/login','students\Auth\LoginController@login');
-                 Route::get('/','students\StudentController@index');
+                Route::post('/register','students\Auth\RegisterController@register');
+                Route::get('/login','students\Auth\LoginController@login');
+                Route::get('/','students\StudentController@index');
                 // Route::get('/me','students\StudentController@usercheck');
                 // Route::post('/out','students\StudentController@userlogout');
-                 Route::get('/{s_id}/show',  'students\StudentController@show');
-                 Route::get('/edit/{s_id}', 'students\Auth\RegisterController@edit');
-                 Route::post('/update/{s_id}','students\Auth\RegisterController@update');
-                 Route::post('/{s_id}','students\StudentController@destroy');
+                Route::get('/{s_id}/show',  'students\StudentController@show');
+                Route::get('/edit/{s_id}', 'students\Auth\RegisterController@edit');
+                Route::post('/update/{s_id}','students\Auth\RegisterController@update');
+                Route::post('/{s_id}','students\StudentController@destroy');
 
 
                 // Route::get('/show_exam/{student}','students\StudentController@show_exam');
@@ -75,12 +75,13 @@ Route::group([ 'prefix' =>'/students',
 Route::group([ 'prefix' =>'/facultyheads',
              [ 'middleware' =>'auth_users','jwt.auth' ]],function()
              {
-                Route::post('/register','facultyheads\FacultyHeadRegisterController@register');
-                 Route::get('/','facultyheads\FacultyHeadController@index');
-                 Route::get('/{faculty_head_id}/show',  'facultyheads\FacultyHeadController@show');
-                 Route::get('/edit/{faculty_head_id}', 'facultyheads\FacultyHeadController@edit');
-                 Route::post('/update/{faculty_head_id}','facultyheads\FacultyHeadController@update');
-                 Route::post('/{faculty_head_id}','facultyheads\FacultyHeadController@destroy');
+        Route::post('/register','facultyheads\FacultyHeadRegisterController@register');
+        Route::post('/login','facultyheads\FacultyHeadLoginController@login');
+         Route::get('/','facultyheads\FacultyHeadController@index');
+         Route::get('/{faculty_head_id}/show',  'facultyheads\FacultyHeadController@show');
+         Route::get('/edit/{faculty_head_id}', 'facultyheads\FacultyHeadController@edit');
+         Route::post('/update/{faculty_head_id}','facultyheads\FacultyHeadController@update');
+         Route::post('/{faculty_head_id}','facultyheads\FacultyHeadController@destroy');
 
 
                 
@@ -93,14 +94,14 @@ Route::group([ 'prefix' =>'/facultyheads',
 Route::group([ 'prefix' =>'/faculty',
              [ 'middleware' =>'auth_users','jwt.auth' ]],function()
              {
-                Route::post('/register','faculty\RegisterFacultyController@register');
-                 Route::get('/','faculty\FacultyController@index');
-                 Route::get('/{faculty_id}/show',  'faculty\FacultyController@show');
-                 Route::get('/edit/{faculty_id}', 'faculty\FacultyController@edit');
-                 Route::post('/update/{faculty_id}','faculty\FacultyController@update');
-                 Route::post('/{faculty_id}','faculty\FacultyController@destroy');
-
-                
+             Route::post('/register','faculty\RegisterFacultyController@register');
+             Route::post('/login','faculty\FacultyLoginController@register');
+             Route::get('/','faculty\FacultyController@index');
+             Route::get('/{faculty_id}/show',  'faculty\FacultyController@show');
+             Route::get('/edit/{faculty_id}', 'faculty\FacultyController@edit');
+             Route::post('/update/{faculty_id}','faculty\FacultyController@update');
+             Route::post('/{faculty_id}','faculty\FacultyController@destroy');
+             
 
              }
 
@@ -110,18 +111,19 @@ Route::group([ 'prefix' =>'/faculty',
 Route::group([ 'prefix' =>'/subadmins',
              [ 'middleware' =>'auth_users','jwt.auth' ]],function()
              {
-                 Route::post('/register','sub_admins\SubAdminRegisterController@register');
-                 // Route::get('/login','staffs\Auth\LoginController@login');
-                 // Route::get('/me','staffs\StaffController@usercheck');
-                 Route::get('/','sub_admins\SubAdminController@index');
+             Route::post('/register','sub_admins\SubAdminRegisterController@register');
+             Route::post('/login','sub_admins\SubAdminLoginController@login');
+             // Route::get('/login','staffs\Auth\LoginController@login');
+             // Route::get('/me','staffs\StaffController@usercheck');
+             Route::get('/','sub_admins\SubAdminController@index');
 
-                 Route::get('/{sub_admin_id}/show',  'sub_admins\SubAdminController@show');
-                 Route::get('/{sub_admin_id}/edit', 'sub_admins\SubAdminController@edit');
+             Route::get('/{sub_admin_id}/show',  'sub_admins\SubAdminController@show');
+             Route::get('/{sub_admin_id}/edit', 'sub_admins\SubAdminController@edit');
 
-                 Route::post('/{sub_admin_id}/update','sub_admins\SubAdminController@update');
+             Route::post('/{sub_admin_id}/update','sub_admins\SubAdminController@update');
 
 
-                 Route::post('/{sub_admin_id}','sub_admins\SubAdminController@destroy');
+             Route::post('/{sub_admin_id}','sub_admins\SubAdminController@destroy');
 
              }
 
@@ -177,35 +179,6 @@ Route::group([ 'prefix' =>'/centres',
 
 );
 
-
-Route::group([ 'prefix' =>'/backlog',
-            ],function()
-             {
-                 Route::post('/register','backlog\InsertBacklogController@register');
-                 // Route::get('/{sub_id}/show',  'courses\CourseUpdateController@show');
-                 // Route::get('/{sub_id}/edit', 'courses\CourseUpdateController@edit');
-                 // Route::post('/{sub_id}','courses\CourseUpdateController@update');
-                 // Route::delete('/{sub_id}','courses\CourseUpdateController@destroy');
-                 // Route::get('/',           'courses\CourseUpdateController@index');
-                // Route::post('/login','classes\LoginController@login');
-             }
-
-);
-
-
-Route::group([ 'prefix' =>'/departments',
-            ],function()
-             {
-                 Route::post('/register','Departments\UpdateDepartmentController@register');
-                 Route::get('/{stream_id}/show',  'Departments\UpdateDepartmentController@show');
-                 Route::get('/{stream_id}/edit', 'Departments\UpdateDepartmentController@edit');
-                 Route::post('/{stream_id}','Departments\UpdateDepartmentController@update');
-
-                 Route::get('/',           'Departments\UpdateDepartmentController@index');
-                // Route::post('/login','classes\LoginController@login');
-             }
-
-);
 
 
 

@@ -27,16 +27,16 @@ class RegisterController extends Controller
      * @return void
    */
 
-    public function __construct()//JWTAuth $auth)
-    {
-      //  $this->auth= $auth;
-         $this->middleware('guest');
-         $this->middleware('guest:user_admins');
-    }
+    // public function __construct()//JWTAuth $auth)
+    // {
+    //   //  $this->auth= $auth;
+    //      $this->middleware('guest');
+    //      $this->middleware('guest:user_admins');
+    // }
 
       protected function guard()
     {
-        return Auth::guard('user_admins');
+        return Auth::guard('admins');
     }
 
     /**
@@ -71,7 +71,7 @@ class RegisterController extends Controller
            $user= $this->create($request->all());
            
            
-           $token= Auth::guard('user_admins')->attempt($request->only('email','password'));
+           $token= Auth::guard('admins')->attempt($request->only('email','password'));
            
            
            
