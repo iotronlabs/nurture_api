@@ -5,19 +5,20 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+use Tymon\JWTAuth\Contracts\JWTSubject;
+
+
 
 class user_sub_admin extends Authenticatable implements JWTSubject
 {
    protected $primaryKey = 'sub_admin_id';
-   protected $guarded = [];
+   
 
    use Notifiable;
 
     protected $guard = 'sub_admin';
     
-    protected $fillable = [
-        'name', 'email', 'password'
-    ];
+    protected $guarded = [];
 
     /**
      * The attributes that should be hidden for arrays.

@@ -156,7 +156,7 @@ class RegisterController extends Controller
             'guardian_address' => $data['guardian_address'],
             'guardian_city' => $data['guardian_city'],
             'guardian_pin' => $data['guardian_pin'],
-            's_profile_picture' => $data['s_profile_picture'],
+            //'s_profile_picture' => $data['s_profile_picture'],
             'guardian_state' => $data['guardian_state'],
             's_centre' => $data['s_centre'],
             's_course' => $data['s_course'],

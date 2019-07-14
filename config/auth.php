@@ -14,8 +14,8 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'students',
-        'guard' => 'students'
+        'guard' => 'faculties',
+        
          //'passwords' => 'users',
     ],
 
@@ -114,7 +114,7 @@ return [
             'model' => App\Models\faculty\user_faculty::class,
         ],
 
-        'user_faculties' => [
+        'user_faculty_heads' => [
             'driver' => 'eloquent',
             'model' => App\Models\faculty\user_faculty_head::class,
         ],

@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\faculty\user_faculty;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use  Tymon\JWTAuth\Facades\JWTAuth;
+use Tymon\JWTAuth\Facades\JWTAuth;
 use Tymon\JWTAuth\Contracts\JWTSubject;
-
+use Auth;
 
 class FacultyLoginController extends Controller
 {
@@ -40,8 +40,9 @@ public function login(Request $request)
     {
 
         try{
-            if(!$token= Auth::guard('faculties')->attempt($request->only('email','password')) )
-                    {
+            if(!$token= Auth::guard('faculties')->attempt($request->only('faculty_email','password')) )
+                    { 
+                        
                         return response()->json
                             ([
                                 'success' =>false,
@@ -72,7 +73,7 @@ public function login(Request $request)
     return response()->json
            ([
                'success' =>true,
-               'data' => $request->all(),
+               //'data' => $request->all(),
                'token' =>$token
                ],200);
 

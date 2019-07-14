@@ -76,7 +76,7 @@ Route::group([ 'prefix' =>'/facultyheads',
              [ 'middleware' =>'auth_users','jwt.auth' ]],function()
              {
         Route::post('/register','facultyheads\FacultyHeadRegisterController@register');
-        Route::post('/login','facultyheads\FacultyHeadLoginController@login');
+        Route::get('/login','facultyheads\FacultyHeadLoginController@login');
          Route::get('/','facultyheads\FacultyHeadController@index');
          Route::get('/{faculty_head_id}/show',  'facultyheads\FacultyHeadController@show');
          Route::get('/edit/{faculty_head_id}', 'facultyheads\FacultyHeadController@edit');
@@ -92,10 +92,10 @@ Route::group([ 'prefix' =>'/facultyheads',
 
 
 Route::group([ 'prefix' =>'/faculty',
-             [ 'middleware' =>'auth_users','jwt.auth' ]],function()
+             [ 'middleware' =>'jwt.auth' ]],function()
              {
              Route::post('/register','faculty\RegisterFacultyController@register');
-             Route::post('/login','faculty\FacultyLoginController@register');
+             Route::get('/login','faculty\FacultyLoginController@login');
              Route::get('/','faculty\FacultyController@index');
              Route::get('/{faculty_id}/show',  'faculty\FacultyController@show');
              Route::get('/edit/{faculty_id}', 'faculty\FacultyController@edit');
@@ -112,7 +112,7 @@ Route::group([ 'prefix' =>'/subadmins',
              [ 'middleware' =>'auth_users','jwt.auth' ]],function()
              {
              Route::post('/register','sub_admins\SubAdminRegisterController@register');
-             Route::post('/login','sub_admins\SubAdminLoginController@login');
+             Route::get('/login','sub_admins\SubAdminLoginController@login');
              // Route::get('/login','staffs\Auth\LoginController@login');
              // Route::get('/me','staffs\StaffController@usercheck');
              Route::get('/','sub_admins\SubAdminController@index');

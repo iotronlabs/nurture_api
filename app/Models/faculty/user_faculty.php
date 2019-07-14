@@ -7,6 +7,7 @@ namespace App\Models\faculty;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
 
 class user_faculty extends Authenticatable implements JWTSubject
@@ -19,9 +20,7 @@ class user_faculty extends Authenticatable implements JWTSubject
      *
      * @var array
      */
-    protected $fillable = [
-        'name', 'email', 'password'
-    ];
+    protected $guarded = [];
 
     /**
      * The attributes that should be hidden for arrays.

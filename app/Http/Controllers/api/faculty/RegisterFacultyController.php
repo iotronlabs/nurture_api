@@ -75,7 +75,7 @@ class RegisterFacultyController extends Controller
 	       {
 	           $user= $this->create($request->all());
 
-
+             // $token= Auth::guard('faculties')->attempt($request->only('faculty_email','password'));
 
 	           return response()->json
 	           ([
@@ -84,7 +84,8 @@ class RegisterFacultyController extends Controller
 	               'success' =>  true,
 	               'data' => $user,
 
-	               //'token' => $token
+	               // 'token' => $token,
+
 	           ],200);
 	       }
 	       return response()->json([

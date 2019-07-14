@@ -25,20 +25,29 @@ class AuthLoginController extends Controller
        	   	   // reditect::route('/api/students/login','api\students\Auth\LoginController@login');
            }
 
-         if($request->authentication =='teacher')
+         if($request->authentication =='faculty')
            {
-             $user['t_email'] = $request->email;
+             $user['faculty_email'] = $request->email;
 
-            return redirect()->action('api\teachers\Auth\LoginController@login',$user);
+            return redirect()->action('api\faculty\FacultyLoginController@login',$user);
 
                // reditect::route('/api/students/login','api\students\Auth\LoginController@login');
            }
 
-           if($request->authentication =='staff')
+           if($request->authentication =='facultyhead')
            {
-             $user['st_email'] = $request->email;
+             $user['faculty_head_email'] = $request->email;
 
-            return redirect()->action('api\staffs\Auth\LoginController@login',$user);
+            return redirect()->action('api\facultyheads\FacultyHeadLoginController@login',$user);
+
+               // reditect::route('/api/students/login','api\students\Auth\LoginController@login');
+           }
+
+           if($request->authentication =='subadmin')
+           {
+             $user['sub_admin_email'] = $request->email;
+
+            return redirect()->action('api\sub_admins\SubAdminLoginController@login',$user);
 
                // reditect::route('/api/students/login','api\students\Auth\LoginController@login');
            }

@@ -40,7 +40,7 @@ public function login(Request $request)
     {
 
         try{
-            if(!$token= Auth::guard('sub_admins')->attempt($request->only('email','password')) )
+            if(!$token= Auth::guard('sub_admins')->attempt($request->only('sub_admin_email','password')) )
                     {
                         return response()->json
                             ([

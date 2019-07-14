@@ -38,7 +38,7 @@ public function login(Request $request)
     {
 
         try{
-            if(!$token= Auth::guard('faculty_heads')->attempt($request->only('email','password')) )
+            if(!$token= Auth::guard('faculty_heads')->attempt($request->only('faculty_head_email','password')) )
                     {
                         return response()->json
                             ([
