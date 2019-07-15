@@ -103,4 +103,15 @@ public function update(Request $request, $sub_admin_id)
 
 }
 
+
+public function usercheck(Request $request) 
+  {
+    return response()->json
+           ([
+               'success' =>  true,
+               'data' => Auth::guard('sub_admins')->user(),
+               // 'token' => $token
+           ],200);
+  }
+
 }

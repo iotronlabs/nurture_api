@@ -105,5 +105,16 @@ public function update(Request $request, $faculty_id)
 
 
 }
+  
+
+public function usercheck(Request $request) 
+  {
+    return response()->json
+           ([
+               'success' =>  true,
+               'data' => Auth::guard('faculties')->user(),
+               // 'token' => $token
+           ],200);
+  }
 
 }

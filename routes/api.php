@@ -47,7 +47,9 @@ Route::group([ 'prefix' =>'/admins',
              [ 'middleware' =>'auth_users','jwt.auth']],function()
              {
                  Route::post('/register','admins\Auth\RegisterController@register');
-                 Route::post('/login','admins\Auth\LoginController@login');
+                 Route::get('/login','admins\Auth\LoginController@login');
+                 Route::get('/me','admins\AdminController@usercheck');
+
              }
 
 );
@@ -58,7 +60,7 @@ Route::group([ 'prefix' =>'/students',
                 Route::post('/register','students\Auth\RegisterController@register');
                 Route::get('/login','students\Auth\LoginController@login');
                 Route::get('/','students\StudentController@index');
-                // Route::get('/me','students\StudentController@usercheck');
+                Route::get('/me','students\StudentController@usercheck');
                 // Route::post('/out','students\StudentController@userlogout');
                 Route::get('/{s_id}/show',  'students\StudentController@show');
                 Route::get('/edit/{s_id}', 'students\Auth\RegisterController@edit');
@@ -81,6 +83,7 @@ Route::group([ 'prefix' =>'/facultyheads',
          Route::get('/{faculty_head_id}/show',  'facultyheads\FacultyHeadController@show');
          Route::get('/edit/{faculty_head_id}', 'facultyheads\FacultyHeadController@edit');
          Route::post('/update/{faculty_head_id}','facultyheads\FacultyHeadController@update');
+         Route::get('/me','facultyheads\FacultyHeadController@usercheck');
          Route::post('/{faculty_head_id}','facultyheads\FacultyHeadController@destroy');
 
 
@@ -97,6 +100,7 @@ Route::group([ 'prefix' =>'/faculty',
              Route::post('/register','faculty\RegisterFacultyController@register');
              Route::get('/login','faculty\FacultyLoginController@login');
              Route::get('/','faculty\FacultyController@index');
+             Route::get('/me','faculty\FacultyController@usercheck');
              Route::get('/{faculty_id}/show',  'faculty\FacultyController@show');
              Route::get('/edit/{faculty_id}', 'faculty\FacultyController@edit');
              Route::post('/update/{faculty_id}','faculty\FacultyController@update');
@@ -114,7 +118,7 @@ Route::group([ 'prefix' =>'/subadmins',
              Route::post('/register','sub_admins\SubAdminRegisterController@register');
              Route::get('/login','sub_admins\SubAdminLoginController@login');
              // Route::get('/login','staffs\Auth\LoginController@login');
-             // Route::get('/me','staffs\StaffController@usercheck');
+             Route::get('/me','sub_admins\SubAdminController@usercheck');
              Route::get('/','sub_admins\SubAdminController@index');
 
              Route::get('/{sub_admin_id}/show',  'sub_admins\SubAdminController@show');

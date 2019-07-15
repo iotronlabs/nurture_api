@@ -20,9 +20,8 @@ class user_admin extends Authenticatable implements JWTSubject
      *
      * @var array
      */
-    protected $fillable = [
-        'name', 'email', 'password'
-    ];
+    protected $guarded =[];
+    
 
     /**
      * The attributes that should be hidden for arrays.

@@ -34,6 +34,16 @@ class AuthLoginController extends Controller
                // reditect::route('/api/students/login','api\students\Auth\LoginController@login');
            }
 
+           if($request->authentication =='admin')
+           {
+             $user['email'] = $request->email;
+
+            return redirect()->action('api\admins\Auth\LoginController@login',$user);
+
+               // reditect::route('/api/students/login','api\students\Auth\LoginController@login');
+           }
+
+
            if($request->authentication =='facultyhead')
            {
              $user['faculty_head_email'] = $request->email;
@@ -63,16 +73,28 @@ class AuthLoginController extends Controller
 
            }
 
-         if(Auth::guard('user_teachers')->check())
+         if(Auth::guard('admins')->check())
            {  
 
-            return redirect()->action('api\teachers\TeacherController@usercheck');
+            return redirect()->action('api\admins\AdminController@usercheck');
 
            }
-            if(Auth::guard('user_staffs')->check())
+            if(Auth::guard('faculties')->check())
            {  
 
-            return redirect()->action('api\staffs\StaffController@usercheck');
+            return redirect()->action('api\faculty\FacultyController@usercheck');
+
+           }
+             if(Auth::guard('faculty_heads')->check())
+           {  
+
+            return redirect()->action('api\facultyheads\FacultyHeadController@usercheck');
+
+           }
+           if(Auth::guard('sub_admins')->check())
+           {  
+
+            return redirect()->action('api\facultyheads\SubAdminController@usercheck');
 
            }
 
