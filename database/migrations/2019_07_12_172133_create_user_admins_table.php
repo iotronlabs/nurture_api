@@ -18,6 +18,7 @@ class CreateUserAdminsTable extends Migration
             $table->string('name');
             $table->string('email');
             $table->string('password');
+            $table->integer('authentication')->default('5')->length(1);
             $table->timestamps();
         });
     }
