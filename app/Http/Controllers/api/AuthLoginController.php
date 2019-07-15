@@ -11,13 +11,13 @@ class AuthLoginController extends Controller
 {
     public function loginRoute(Request $request)
     {
-      
-        $user['password'] = $request->password;      
-       
+
+        $user['password'] = $request->password;
+
 
        	// return $request->authentication;
          if($request->authentication =='student')
-       	   {  
+       	   {
              $user['s_email'] = $request->email;
 
        		  return redirect()->action('api\students\Auth\LoginController@login',$user);
@@ -61,44 +61,44 @@ class AuthLoginController extends Controller
 
                // reditect::route('/api/students/login','api\students\Auth\LoginController@login');
            }
-   } 
+   }
 
 
     public function check_user(Request $request)
     {
            if(Auth::guard('students')->check())
-           {  
+           {
 
             return redirect()->action('api\students\StudentController@usercheck');
 
            }
 
          if(Auth::guard('admins')->check())
-           {  
+           {
 
             return redirect()->action('api\admins\AdminController@usercheck');
 
            }
             if(Auth::guard('faculties')->check())
-           {  
+           {
 
             return redirect()->action('api\faculty\FacultyController@usercheck');
 
            }
              if(Auth::guard('faculty_heads')->check())
-           {  
+           {
 
             return redirect()->action('api\facultyheads\FacultyHeadController@usercheck');
 
            }
            if(Auth::guard('sub_admins')->check())
-           {  
+           {
 
             return redirect()->action('api\facultyheads\SubAdminController@usercheck');
 
            }
 
 
-         
+
     }
 }

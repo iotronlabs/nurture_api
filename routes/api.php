@@ -82,12 +82,12 @@ Route::group([ 'prefix' =>'/facultyheads',
          Route::get('/','facultyheads\FacultyHeadController@index');
          Route::get('/{faculty_head_id}/show',  'facultyheads\FacultyHeadController@show');
          Route::get('/edit/{faculty_head_id}', 'facultyheads\FacultyHeadController@edit');
-         Route::post('/update/{faculty_head_id}','facultyheads\FacultyHeadController@update');
+         Route::post('/{faculty_head_id}','facultyheads\FacultyHeadController@update');
          Route::get('/me','facultyheads\FacultyHeadController@usercheck');
-         Route::post('/{faculty_head_id}','facultyheads\FacultyHeadController@destroy');
+         Route::delete('/{faculty_head_id}','facultyheads\FacultyHeadController@destroy');
 
 
-                
+
 
              }
 
@@ -103,9 +103,9 @@ Route::group([ 'prefix' =>'/faculty',
              Route::get('/me','faculty\FacultyController@usercheck');
              Route::get('/{faculty_id}/show',  'faculty\FacultyController@show');
              Route::get('/edit/{faculty_id}', 'faculty\FacultyController@edit');
-             Route::post('/update/{faculty_id}','faculty\FacultyController@update');
-             Route::post('/{faculty_id}','faculty\FacultyController@destroy');
-             
+             Route::post('/{faculty_id}','faculty\FacultyController@update');
+             Route::delete('/{faculty_id}','faculty\FacultyController@destroy');
+
 
              }
 
@@ -124,10 +124,10 @@ Route::group([ 'prefix' =>'/subadmins',
              Route::get('/{sub_admin_id}/show',  'sub_admins\SubAdminController@show');
              Route::get('/{sub_admin_id}/edit', 'sub_admins\SubAdminController@edit');
 
-             Route::post('/{sub_admin_id}/update','sub_admins\SubAdminController@update');
+             Route::post('/{sub_admin_id}','sub_admins\SubAdminController@update');
 
 
-             Route::post('/{sub_admin_id}','sub_admins\SubAdminController@destroy');
+             Route::delete('/{sub_admin_id}','sub_admins\SubAdminController@destroy');
 
              }
 
