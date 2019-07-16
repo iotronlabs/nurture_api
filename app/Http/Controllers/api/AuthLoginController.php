@@ -94,7 +94,7 @@ class AuthLoginController extends Controller
            if(Auth::guard('sub_admins')->check())
            {
 
-            return redirect()->action('api\facultyheads\SubAdminController@usercheck');
+            return redirect()->action('api\sub_admins\SubAdminController@usercheck');
 
            }
 
