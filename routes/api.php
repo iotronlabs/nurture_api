@@ -49,6 +49,7 @@ Route::group([ 'prefix' =>'/admins',
                  Route::post('/register','admins\Auth\RegisterController@register');
                  Route::get('/login','admins\Auth\LoginController@login');
                  Route::get('/me','admins\AdminController@usercheck');
+                 Route::post('/out','admins\AdminController@userlogout');
 
              }
 
@@ -61,7 +62,7 @@ Route::group([ 'prefix' =>'/students',
                 Route::get('/login','students\Auth\LoginController@login');
                 Route::get('/','students\StudentController@index');
                 Route::get('/me','students\StudentController@usercheck');
-                // Route::post('/out','students\StudentController@userlogout');
+                Route::post('/out','students\StudentController@userlogout');
                 Route::get('/{s_id}/show',  'students\StudentController@show');
                 Route::get('/edit/{s_id}', 'students\Auth\RegisterController@edit');
                 Route::post('/update/{s_id}','students\Auth\RegisterController@update');
@@ -85,6 +86,7 @@ Route::group([ 'prefix' =>'/facultyheads',
          Route::post('/update/{faculty_head_id}','facultyheads\FacultyHeadController@update');
          Route::get('/me','facultyheads\FacultyHeadController@usercheck');
          Route::post('/{faculty_head_id}','facultyheads\FacultyHeadController@destroy');
+         Route::post('/out','facultyheads\FacultyHeadController@userlogout');
 
 
                 

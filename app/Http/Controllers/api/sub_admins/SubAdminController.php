@@ -114,4 +114,18 @@ public function usercheck(Request $request)
            ],200);
   }
 
+public function userlogout()
+  {
+    Auth::guard('sub_admins')->logout();
+
+    return response()->json
+           ([
+               'success' =>  true,
+               // 'data' => $request->user(),
+               // 'token' => $token
+           ],200);
+  }
+
+
+
 }

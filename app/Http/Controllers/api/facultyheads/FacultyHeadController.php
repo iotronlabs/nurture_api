@@ -114,4 +114,17 @@ public function usercheck(Request $request)
                // 'token' => $token
            ],200);
   }
+
+public function userlogout()
+  {
+    Auth::guard('faculty_heads')->logout();
+
+    return response()->json
+           ([
+               'success' =>  true,
+               // 'data' => $request->user(),
+               // 'token' => $token
+           ],200);
+  }
+
 }

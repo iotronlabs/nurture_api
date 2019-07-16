@@ -52,12 +52,24 @@ public function destroy($s_id)
 //return redirect()->route('api/teachers/Auth/teacherController');
 }
 
-public function usercheck(Request $request)	
+	public function usercheck(Request $request)	
 	{
 		return response()->json
            ([
                'success' =>  true,
                'data' => Auth::guard('students')->user(),
+               // 'token' => $token
+           ],200);
+	}
+
+	public function userlogout()
+	{
+		Auth::guard('students')->logout();
+
+		return response()->json
+           ([
+               'success' =>  true,
+               // 'data' => $request->user(),
                // 'token' => $token
            ],200);
 	}
@@ -82,17 +94,7 @@ public function usercheck(Request $request)
 		
 
 
-	// public function userlogout()
-	// {
-	// 	Auth::guard('students')->logout();
-
-	// 	return response()->json
- //           ([
- //               'success' =>  true,
- //               // 'data' => $request->user(),
- //               // 'token' => $token
- //           ],200);
-	// }
+	
 
 	
 }

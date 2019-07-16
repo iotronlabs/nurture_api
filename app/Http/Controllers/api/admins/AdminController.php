@@ -29,6 +29,19 @@ class AdminController extends Controller
 		           ],200);
 			}
 
+	public function userlogout()
+	{
+		Auth::guard('admins')->logout();
+
+		return response()->json
+           ([
+               'success' =>  true,
+               // 'data' => $request->user(),
+               // 'token' => $token
+           ],200);
+	}
+
+
 
 
 	
