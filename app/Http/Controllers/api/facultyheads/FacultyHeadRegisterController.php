@@ -61,6 +61,7 @@ class FacultyHeadRegisterController extends Controller
             'faculty_head_gender' => ['required', 'max:1'],
             'faculty_head_contact' => ['required', 'min:10'],
             'faculty_head_dob' => ['required'],
+            'faculty_head_address_state' => ['required'],
 
 
         ]);
@@ -137,9 +138,9 @@ class FacultyHeadRegisterController extends Controller
             'faculty_head_gender' => $data['faculty_head_gender'],
             'faculty_head_contact' => $data['faculty_head_contact'],
             'faculty_head_dob' => $data['faculty_head_dob'],
-          
+
             'faculty_head_address' => $data['faculty_head_address'],
-          
+
             'faculty_head_address_pin' => $data['faculty_head_address_pin'],
             'faculty_head_address_state' => $data['faculty_head_address_state'],
 

@@ -58,15 +58,15 @@ Route::group([ 'prefix' =>'/admins',
 Route::group([ 'prefix' =>'/students',
              [ 'middleware' =>'auth_users','jwt.auth' ]],function()
              {
-                Route::post('/register','students\Auth\RegisterController@register');
-                Route::get('/login','students\Auth\LoginController@login');
-                Route::get('/','students\StudentController@index');
-                Route::get('/me','students\StudentController@usercheck');
-                Route::post('/out','students\StudentController@userlogout');
-                Route::get('/{s_id}/show',  'students\StudentController@show');
-                Route::get('/edit/{s_id}', 'students\Auth\RegisterController@edit');
-                Route::post('/update/{s_id}','students\Auth\RegisterController@update');
-                Route::post('/{s_id}','students\StudentController@destroy');
+        Route::post('/register','students\Auth\RegisterController@register');
+        Route::get('/login','students\Auth\LoginController@login');
+        Route::get('/','students\StudentController@index');
+        Route::get('/me','students\StudentController@usercheck');
+        Route::post('/out','students\StudentController@userlogout');
+        Route::get('/{s_id}/show',  'students\StudentController@show');
+        Route::get('/edit/{s_id}', 'students\Auth\RegisterController@edit');
+        Route::post('/{s_id}','students\Auth\RegisterController@update');
+        Route::delete('/{s_id}','students\StudentController@destroy');
 
 
                 // Route::get('/show_exam/{student}','students\StudentController@show_exam');
@@ -78,18 +78,22 @@ Route::group([ 'prefix' =>'/students',
 Route::group([ 'prefix' =>'/facultyheads',
              [ 'middleware' =>'auth_users','jwt.auth' ]],function()
              {
-        Route::post('/register','facultyheads\FacultyHeadRegisterController@register');
-        Route::get('/login','facultyheads\FacultyHeadLoginController@login');
-         Route::get('/','facultyheads\FacultyHeadController@index');
-         Route::get('/{faculty_head_id}/show',  'facultyheads\FacultyHeadController@show');
-         Route::get('/edit/{faculty_head_id}', 'facultyheads\FacultyHeadController@edit');
-         Route::post('/update/{faculty_head_id}','facultyheads\FacultyHeadController@update');
-         Route::get('/me','facultyheads\FacultyHeadController@usercheck');
-         Route::post('/{faculty_head_id}','facultyheads\FacultyHeadController@destroy');
-         Route::post('/out','facultyheads\FacultyHeadController@userlogout');
+Route::post('/register','facultyheads\FacultyHeadRegisterController@register');
+Route::get('/login','facultyheads\FacultyHeadLoginController@login');
+ Route::get('/','facultyheads\FacultyHeadController@index');
+ Route::get('/{faculty_head_id}/show',  'facultyheads\FacultyHeadController@show');
+ Route::get('/edit/{faculty_head_id}', 'facultyheads\FacultyHeadController@edit');
+ Route::post('/{faculty_head_id}','facultyheads\FacultyHeadController@update');
+ Route::get('/me','facultyheads\FacultyHeadController@usercheck');
+
+ 
+ Route::post('/out','facultyheads\FacultyHeadController@userlogout');
+
+ Route::delete('/{faculty_head_id}','facultyheads\FacultyHeadController@destroy');
 
 
-                
+
+
 
              }
 
@@ -105,9 +109,11 @@ Route::group([ 'prefix' =>'/faculty',
              Route::get('/me','faculty\FacultyController@usercheck');
              Route::get('/{faculty_id}/show',  'faculty\FacultyController@show');
              Route::get('/edit/{faculty_id}', 'faculty\FacultyController@edit');
-             Route::post('/update/{faculty_id}','faculty\FacultyController@update');
-             Route::post('/{faculty_id}','faculty\FacultyController@destroy');
-             
+             Route::post('/{faculty_id}','faculty\FacultyController@update');
+             Route::delete('/{faculty_id}','faculty\FacultyController@destroy');
+             Route::post('/out','faculty\FacultyController@userlogout');
+
+
 
              }
 
@@ -126,10 +132,11 @@ Route::group([ 'prefix' =>'/subadmins',
              Route::get('/{sub_admin_id}/show',  'sub_admins\SubAdminController@show');
              Route::get('/{sub_admin_id}/edit', 'sub_admins\SubAdminController@edit');
 
-             Route::post('/{sub_admin_id}/update','sub_admins\SubAdminController@update');
+             Route::post('/{sub_admin_id}','sub_admins\SubAdminController@update');
 
 
-             Route::post('/{sub_admin_id}','sub_admins\SubAdminController@destroy');
+             Route::delete('/{sub_admin_id}','sub_admins\SubAdminController@destroy');
+             Route::post('/out','sub_admins\SubAdminController@userlogout');
 
              }
 
@@ -140,12 +147,12 @@ Route::group([ 'prefix' =>'/subadmins',
 Route::group([ 'prefix' =>'/courses',
             ],function()
              {
-                 Route::post('/register','courses\RegisterCourseController@register');
-                 Route::get('/show/{course_id} ',  'courses\CourseUpdateController@show');
-                 Route::get('/edit/{course_id}', 'courses\CourseUpdateController@edit');
-                 Route::post('/update/{course_id}','courses\CourseUpdateController@update');
-                 Route::post('/{course_id}','courses\CourseUpdateController@destroy');
-                 Route::get('/',           'courses\CourseUpdateController@index');
+         Route::post('/register','courses\RegisterCourseController@register');
+         Route::get('/show/{course_id} ',  'courses\CourseUpdateController@show');
+         Route::get('/edit/{course_id}', 'courses\CourseUpdateController@edit');
+         Route::post('/{course_id}','courses\CourseUpdateController@update');
+         Route::delete('/{course_id}','courses\CourseUpdateController@destroy');
+         Route::get('/',           'courses\CourseUpdateController@index');
                 // Route::post('/login','classes\LoginController@login');
              }
 
@@ -159,9 +166,9 @@ Route::group([ 'prefix' =>'/classes',
                 Route::post('/register','classes\RegisterClassController@register');
                 Route::get('/show/{class_id}',  'classes\ClassesUpdateController@show');
                 Route::get('/edit/{class_id}', 'classes\ClassesUpdateController@edit');
-                Route::post('/update/{class_id}','classes\ClassesUpdateController@update');
-                Route::post('/{class_id}','classes\ClassesUpdateController@destroy');
-                Route::get('/',           'classes\ClassesUpdateController@index');
+                Route::post('/{class_id}','classes\ClassesUpdateController@update');
+                Route::delete('/{class_id}','classes\ClassesUpdateController@destroy');
+                Route::get('/',   'classes\ClassesUpdateController@index');
 
 
 
@@ -174,12 +181,12 @@ Route::group([ 'prefix' =>'/classes',
 Route::group([ 'prefix' =>'/centres',
             ],function()
              {
-                 Route::post('/register','centres\RegisterCentreController@register');
-                 Route::get('/show/{centre_id} ',  'centres\CentreUpdateController@show');
-                 Route::get('/edit/{centre_id}', 'centres\CentreUpdateController@edit');
-                 Route::post('/update/{centre_id}','centres\CentreUpdateController@update');
-                 Route::post('/{centre_id}','centres\CentreUpdateController@destroy');
-                 Route::get('/',           'centres\CentreUpdateController@index');
+         Route::post('/register','centres\RegisterCentreController@register');
+         Route::get('/show/{centre_id} ',  'centres\CentreUpdateController@show');
+         Route::get('/edit/{centre_id}', 'centres\CentreUpdateController@edit');
+         Route::post('/{centre_id}','centres\CentreUpdateController@update');
+         Route::delete('/{centre_id}','centres\CentreUpdateController@destroy');
+         Route::get('/',  'centres\CentreUpdateController@index');
                 // Route::post('/login','classes\LoginController@login');
              }
 

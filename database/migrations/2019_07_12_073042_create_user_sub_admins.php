@@ -37,7 +37,7 @@ class CreateUserSubAdmins extends Migration
             $table->string('sub_admin_profile_picture')->nullable();
 
             $table->unsignedTinyinteger('status')->length(3)->default('111');
-            $table->integer('sub_admin_authentication')->default('1')->length(1);
+            $table->integer('authentication')->default('4')->length(1);
             $table->rememberToken();
             $table->timestamps();
         });
