@@ -142,9 +142,9 @@ class SubAdminRegisterController extends Controller
         'sub_admin_gender' => $data['sub_admin_gender'],
         'sub_admin_contact' => $data['sub_admin_contact'],
         'sub_admin_dob' => $data['sub_admin_dob'],
-      
+
         'sub_admin_address' => $data['sub_admin_address'],
-      
+
         'sub_admin_address_pin' => $data['sub_admin_address_pin'],
         'sub_admin_address_state' => $data['sub_admin_address_state'],
 

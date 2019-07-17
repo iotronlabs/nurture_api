@@ -21,9 +21,10 @@ class RegisterClassController extends Controller
         return Validator::make($data, [
             'start_time' => ['required'],
             'end_time' => ['required'],
-            'course' => ['required'],
+            'class_course' => ['required'],
             'class_name' => ['required'],
-           
+            'class_centre_name' => ['required'],
+
 
 
         ]);
@@ -67,14 +68,15 @@ class RegisterClassController extends Controller
         //                ->where('t_surname',$data['t_surname'])
         //                ->first('t_id');
 
-        // $ct_id->toArray();               
+        // $ct_id->toArray();
 
         return table_classes::create([
             'class_name' => $data['class_name'],
             'start_time'=> $data['start_time'],
             'end_time' => $data['end_time'],
-            'course' => $data['course'],
-            
+            'class_course' => $data['class_course'],
+            'class_centre_name' => $data['class_centre_name'],
+
         ]);
     }
 

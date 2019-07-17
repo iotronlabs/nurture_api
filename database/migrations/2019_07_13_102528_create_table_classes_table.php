@@ -19,7 +19,8 @@ class CreateTableClassesTable extends Migration
             $table->string('class_name')->length(100);
             $table->date('start_time');
             $table->date('end_time');
-            $table->string('course')->length(100);
+            $table->string('class_course')->length(100);
+            $table->string('class_centre_name')->length(100);
             $table->timestamps();
         });
     }
