@@ -69,8 +69,18 @@ class Kernel extends HttpKernel
         'cors' =>   \App\Http\Middleware\Cors::class,
         'assign.guard' => \App\Http\Middleware\AssignGuard::class,
         'auth_users' => \App\Http\Middleware\AuthenticateAllUsers::class,
-        'authteachers' => \App\Http\Middleware\AuthenticateTeacher::class,
-        'authstudents' => \App\Http\Middleware\AuthenticateStudent::class,
+        'authfaculty' => \App\Http\Middleware\AuthenticateFaculty::class,
+        'authstudent' => \App\Http\Middleware\AuthenticateStudent::class,
+        'authfacultyhead' => \App\Http\Middleware\AuthenticateFacultyHead::class,
+        'authsubadmin' => \App\Http\Middleware\AuthenticateSubAdmin::class,
+        'authadmin' => \App\Http\Middleware\AuthenticateAdmin::class,
+        'authadminsubadmin' => \App\Http\Middleware\AuthenticateAdminSubAdmin::class,
+        'authfacultyheadsubadmin' => \App\Http\Middleware\AuthenticateFacultyHeadSubAdmin::class,
+        
+
+
+
+
 
     ];
 

@@ -9,7 +9,9 @@ use Illuminate\Support\Facades\Auth;
 
 
 class FacultyController extends Controller
-{
+{ 
+
+
     public function index()
     {
         $user_details=user_faculty::all();

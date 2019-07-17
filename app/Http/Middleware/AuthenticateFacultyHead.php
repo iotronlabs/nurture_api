@@ -4,12 +4,12 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Auth;
-
-class AuthenticateTeacher
+class AuthenticateFacultyHead
 {
-     public function handle($request, Closure $next)
-    {   
-        if(!Auth::guard('user_teachers')->check())
+    
+    public function handle($request, Closure $next)
+    {
+        if(!Auth::guard('faculty_heads')->check())
         {
             return redirect('/');
         }

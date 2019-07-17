@@ -3,21 +3,17 @@
 namespace App\Http\Middleware;
 
 use Closure;
-
 use Auth;
 
-class AuthenticateStudent
+class AuthenticateFaculty
+
 {
-   
-    public function handle($request, Closure $next)
+     public function handle($request, Closure $next)
     {   
-        if(!Auth::guard('students')->check())
+        if(!Auth::guard('faculties')->check())
         {
             return redirect('/');
         }
         return $next($request);
     }
 }
-
-
-?>

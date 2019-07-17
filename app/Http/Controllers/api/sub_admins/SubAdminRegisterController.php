@@ -33,7 +33,7 @@ class SubAdminRegisterController extends Controller
     {
 
       //  $this->middleware('guest:students');
-      //  $this->middleware('guest');
+        $this->middleware('authadmin');
 
       // // $this->auth= $auth;
 

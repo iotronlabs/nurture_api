@@ -32,10 +32,7 @@ class RegisterFacultyController extends Controller
     public function __construct()
     {
 
-       // $this->middleware('guest:students');
-       // $this->middleware('guest');
-
-      // $this->auth= $auth;
+        $this->middleware('authfacultyheadsubadmin');
 
     }
 

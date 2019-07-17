@@ -20,9 +20,8 @@ class RegisterCentreController extends Controller
         return Validator::make($data, [
            // 'class_id' => ['required', 'string', 'max:255'],
            
-            'centre_name' => 'required',
+            'centre_name' => ['required','unique:table_centres']
             
-
         ]);
     }
 

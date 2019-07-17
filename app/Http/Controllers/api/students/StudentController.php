@@ -8,7 +8,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class StudentController extends Controller
-{	
+{		
+
+	
+
     public function index()
     {
         $user_details=user_student::all();
