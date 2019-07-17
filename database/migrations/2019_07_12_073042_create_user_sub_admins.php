@@ -32,7 +32,13 @@ class CreateUserSubAdmins extends Migration
             $table->string('sub_admin_address_state')->length(20);
 
             // $table->string('sub_admin_sub')->length(100);
-            $table->string('sub_admin_centre')->length(100);
+            $table->string('sub_admin_centre_name')->length(100)->unique();
+            $table->string('sub_admin_centre_address');
+            $table->string('sub_admin_centre_address_city');
+            $table->string('sub_admin_centre_address_pin')->length(6);
+            $table->string('sub_admin_centre_address_state');
+            $table->string('sub_admin_centre_id')->unique();
+
 
             $table->string('sub_admin_profile_picture')->nullable();
 

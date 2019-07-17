@@ -33,7 +33,7 @@ class SubAdminRegisterController extends Controller
     {
 
       //  $this->middleware('guest:students');
-        $this->middleware('authadmin');
+         $this->middleware('authadmin');
 
       // // $this->auth= $auth;
 
@@ -61,6 +61,11 @@ class SubAdminRegisterController extends Controller
             'sub_admin_gender' => ['required', 'max:1'],
             'sub_admin_contact' => ['required', 'min:10'],
             'sub_admin_dob' => ['required'],
+            'sub_admin_centre_name' => ['required'],
+            'sub_admin_centre_id' => ['required'],
+            'sub_admin_centre_address' => ['required'],
+            'sub_admin_centre_address_city' => ['required'],
+
 
 
         ]);
@@ -130,22 +135,34 @@ class SubAdminRegisterController extends Controller
 
 
         return user_sub_admin::create([
-            'sub_admin_fname' => $data['sub_admin_fname'],
-            'sub_admin_surname' => $data['sub_admin_surname'],
-            'sub_admin_email' => $data['sub_admin_email'],
-            'password' => Hash::make($data['password']),
-            'sub_admin_gender' => $data['sub_admin_gender'],
-            'sub_admin_contact' => $data['sub_admin_contact'],
-            'sub_admin_dob' => $data['sub_admin_dob'],
-          
-            'sub_admin_address' => $data['sub_admin_address'],
-          
-            'sub_admin_address_pin' => $data['sub_admin_address_pin'],
-            'sub_admin_address_state' => $data['sub_admin_address_state'],
+        'sub_admin_fname' => $data['sub_admin_fname'],
+        'sub_admin_surname' => $data['sub_admin_surname'],
+        'sub_admin_email' => $data['sub_admin_email'],
+        'password' => Hash::make($data['password']),
+        'sub_admin_gender' => $data['sub_admin_gender'],
+        'sub_admin_contact' => $data['sub_admin_contact'],
+        'sub_admin_dob' => $data['sub_admin_dob'],
+      
+        'sub_admin_address' => $data['sub_admin_address'],
+      
+        'sub_admin_address_pin' => $data['sub_admin_address_pin'],
+        'sub_admin_address_state' => $data['sub_admin_address_state'],
 
-            'sub_admin_centre' => $data['sub_admin_centre'],
+        'sub_admin_centre_name' => $data['sub_admin_centre_name'],
 
-            'sub_admin_address_city' => $data['sub_admin_address_city'],
+        'sub_admin_centre_address' => $data['sub_admin_centre_address'],
+
+        'sub_admin_centre_address_city' => $data['sub_admin_centre_address_city'],
+
+        'sub_admin_centre_address_state' => $data['sub_admin_centre_address_state'],
+
+        'sub_admin_centre_address_pin' => $data['sub_admin_centre_address_pin'],
+
+        'sub_admin_centre_id' => $data['sub_admin_centre_id'],
+
+
+        'sub_admin_address_city' => $data['sub_admin_address_city'],
+
 
 
             // 'sub_admin_profile_picture' => $profile_image_url,
