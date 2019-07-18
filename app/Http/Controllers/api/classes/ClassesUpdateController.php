@@ -87,4 +87,19 @@ public function update(Request $request, $class_id)
 				           ],200);
 
 		}
+
+		public function detail(table_classes $class)
+		{
+
+			//dd($class);
+
+			 $user = table_classes::where('class_centre_name',$class->class_centre_name)->get();
+            
+             return response()->json([
+             
+                 'data' => $user,
+
+             ]);
+		 
+		}
 }

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\api\courses;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\course\subject_course;
 use App\Models\course\table_course;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 
 class CourseUpdateController extends Controller
@@ -46,19 +48,89 @@ class CourseUpdateController extends Controller
 
 public function update(Request $request, $course_id)
 {
+
 		  	$task = table_course::findOrFail($course_id);
+
+
 		    $this->validate($request, [
 		    	'course_name'=> 'required',
 		    	'course_duration' => 'required',
 
 		    ]);
 
-		    $input = $request->all();
-		    $task->fill($input)->save();
+		    $name = $request->course_name;
+
+		    //dd($name);
+
+		    // DB::table('table_courses')
+      //               ->where('course_id',$course_id)
+      //               ->update([
+      //                   'course_name' => $request->course_name,
+      //                   'course_duration' => $request->course_duration,
+      //                   ]);
+
+		    $task->course_name = $request->course_name;
+		    $task->course_duration = $request->course_duration;
+
+		    $task->save();
+
+		   
+          
+            $data = subject_course::where('course_name',$name)->get('sub_name');
+
+            $data->toArray();
+
+           
+
+        
+            for ($i=0; $i < sizeof($data) ; $i++) { 
+
+		          if(!in_array($data[$i]['sub_name'],$request->subjects))
+		          {
+		             DB::table('subject_courses')
+		                    ->where('sub_name',$data[$i]['sub_name'])
+		                    ->where('course_name',$name)
+		                    ->delete();
+	                    
+		          } 
+		         
+       		 }
+
+       	foreach ($request->subjects as $subject) {
+
+ 
+           $task = subject_course::where('sub_name',$subject)
+                                ->where('course_name',$name);
+                                
+
+
+            if($task->exists())
+            {
+                DB::table('subject_courses')
+                    ->where('sub_name',$subject)
+                    ->where('course_name',$name)
+                    ->update([
+                        "course_name" => $request->course_name,
+                        ]);
+
+            }
+            else
+            {
+                
+                $user_insert =  subject_course::create([
+
+                    'sub_name' => $subject,
+                    'course_name' => $request->course_name,
+                 
+                ]);
+            }
+
+        }
+		    
 	     	return response()->json
 		           ([
 		               'success' =>  true,
-		               'data' => $task,
+		               
 		               
 		           ],200);
 	
@@ -66,9 +138,9 @@ public function update(Request $request, $course_id)
 }
 
 
-		public function destroy($sub_id)
+		public function destroy($course_id)
 		{
-			    $task = table_course::findOrFail($sub_id);
+			    $task = table_course::findOrFail($course_id);
 
 			    $task->delete();
 			//dd($task);

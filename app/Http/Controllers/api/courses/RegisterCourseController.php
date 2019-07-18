@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers\api\courses;
 
-use App\Models\course\table_course;
-use \Illuminate\Http\Request;
+use  Tymon\JWTAuth\Facades\JWTAuth;
 use App\Http\Controllers\Controller;
+use App\Models\course\subject_course;
+use App\Models\course\table_course;
+use Auth;
+use Config;
+use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Foundation\Auth\RegistersUsers;
-use  Tymon\JWTAuth\Facades\JWTAuth;
-use Config; 
-use Auth;
+use \Illuminate\Http\Request;
 
 class RegisterCourseController extends Controller
 {
@@ -43,12 +44,7 @@ class RegisterCourseController extends Controller
            		
            		
                'success' =>  true,
-               'data' => [
-
-               	'course_name'  => $user->course_name,
-               	'course_duration' => $user->course_duration,
-                
-               ]
+              
                //'token' => $token
            ],200);
        }
@@ -67,7 +63,7 @@ class RegisterCourseController extends Controller
 
 
 
-        return table_course::create([
+         table_course::create([
            
           'course_name' => $data['course_name'],
        
@@ -75,6 +71,23 @@ class RegisterCourseController extends Controller
 
           
         ]);
+
+        foreach ($data['subjects'] as $subject) {
+
+         subject_course::create([
+          
+            'course_name' => $data['course_name'],
+
+            'sub_name' => $subject,
+
+         ]);
+        }
+
+        // return response()->json([
+
+        //     'success' => true,
+        // ],200);
+
     }
 }
 

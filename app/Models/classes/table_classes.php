@@ -37,8 +37,12 @@ class table_classes extends Authenticatable
     protected $casts = [
       //  'email_verified_at' => 'datetime',
     ];
-    
-    
+
+    public function getRouteKeyName()
+    {
+        return 'class_centre_name';
+    }
+
     public function getJWTIdentifier()
     {
       return $this->getkey();

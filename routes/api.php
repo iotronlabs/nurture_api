@@ -170,6 +170,7 @@ Route::group([ 'prefix' =>'/classes',
                 Route::post('/{class_id}','classes\ClassesUpdateController@update');
                 Route::delete('/{class_id}','classes\ClassesUpdateController@destroy');
                 Route::get('/',   'classes\ClassesUpdateController@index');
+                Route::get('/{class}','classes\ClassesUpdateController@detail');
 
 
 
