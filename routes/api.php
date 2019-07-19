@@ -247,24 +247,20 @@ Route::group([ 'prefix' =>'/streams',
 Route::group([ 'prefix' =>'/exams',
             ],function()
              {
-            Route::post('/{teacher}/addexam','exams\ExaminationController@addexam');
+            Route::post('/addexam','exams\ExaminationController@addexam');
             Route::get('/','exams\ExaminationController@index');
             Route::get('/{exam}/edit', 'exams\ExaminationController@edit_exam');
-            Route::get('/{exam}','exams\ExaminationController@get_question');
+            // Route::get('/{exam}','exams\ExaminationController@get_question');
             Route::post('/{exam}/update','exams\ExaminationController@update');
-            Route::get('/{teacher}/show_exam', 'exams\ExaminationController@show_exam');
-            Route::get('/{exam}/delete','exams\ExaminationController@destroy');
+            
+            Route::delete('/{exam}/delete','exams\ExaminationController@destroy');
             Route::post('/{exam}/deactivate','exams\ExaminationController@deactivate_exam');
-            Route::get('/show_rules/{exam}','exams\ExaminationController@show_rules');
-
-
-
-
-            Route::post('/{exam}', 'exams\QuestionController@add_question');
-             Route::get('/question/{exam}', 'exams\QuestionController@show_question');
-             Route::get('/edit/{question}','exams\QuestionController@edit_question');
-             Route::post('/update/{question}','exams\QuestionController@update_question');
-             Route::get('/delete_question/{question}','exams\QuestionController@delete_question');
+            
+            Route::post('/{exam}/addquestions', 'exams\QuestionController@add_question');
+            Route::get('/{exam}/question/', 'exams\QuestionController@show_question');
+           Route::get('/edit/question/{question}','exams\QuestionController@edit_question');
+           Route::post('/update/question/{question}','exams\QuestionController@update_question');
+         Route::delete('/question/{question}','exams\QuestionController@delete_question');
              }
 
 );

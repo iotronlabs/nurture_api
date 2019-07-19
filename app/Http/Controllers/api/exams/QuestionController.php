@@ -18,20 +18,16 @@ use \Illuminate\Http\Request;
 class QuestionController extends Controller
 {   
 
-    /**
-     * Class constructor.
-     */
-    public function __construct()
-    {
-        $this->middleware('authteachers');
-    }
+   
    protected function validator(array $data)
     {
         return Validator::make($data, [
            // 'class_id' => ['required', 'string', 'max:255'],
             
             'type'  => ['required'],
-            'question' => ['required','unique:questions'],
+            'question' => ['required'],
+            'answer' => ['required'],
+
  
         ]);
     }
@@ -53,10 +49,7 @@ class QuestionController extends Controller
            		
                'success' =>  true,
               
-               'data' => [
-                'question_code' => $user->question_id,
-                'exam_id' => $user->exam_id,
-               ],
+               'data' => $user,
                
                //'token' => $token
            ],200);
@@ -73,32 +66,42 @@ class QuestionController extends Controller
 
     protected function create(array $data,examination $exam)
     {   
-        //   dd($exam->exam_code);
+              $request = Request();
+              $profileImage = $request->file('image');
+              $profileImageSaveAsName = time() . Auth::id() . "-profile." .
+              $profileImage->getClientOriginalExtension();
+
+              $upload_path = 'profile_images/exams/';
+              $profile_image_url = $upload_path . $profileImageSaveAsName;
+              $success = $profileImage->move($upload_path, $profileImageSaveAsName);
+
         return question::create([
           
-            'question_id'  => 'QES-'.mt_rand(0001,9999).'',
-            'exam_id' => $exam->exam_code,
+            
+            'exam_id' => $exam->id,
 	        'type' => $data['type'],
             'question' => $data['question'],
             'option_1' => $data['option_1'],
             'option_2' => $data['option_2'],
             'option_3' => $data['option_3'],
             'option_4' => $data['option_4'],
-            'answer' => $data['answer'],  
+            'image' => $profileImage,
+            'answer' => $data['answer'],
+            'topics' => $data['topics'],  
      
         ]);
       }
-      public function  show_question(examination $exam)
-      {
-          $details = $exam->questions()->get();
-        //   dd($details);
-          return response()->json
-              ([
-                  'success' =>  true,
-                  'data' => $details,
+      // public function  show_question(examination $exam)
+      // {
+      //     $details = $exam->questions()->get();
+      //   //   dd($details);
+      //     return response()->json
+      //         ([
+      //             'success' =>  true,
+      //             'data' => $details,
                    
-              ],200);
-      }
+      //         ],200);
+      // }
 
       public function edit_question(question $question)
      

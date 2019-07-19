@@ -9,14 +9,14 @@ class question extends Model
 {
      
      protected $primaryKey = 'question_id';
-     public $incrementing = false;
+     
 
 
     protected $guarded =[];
 
         public function examination()
         {
-            return $this->belongsTo(examination::class,'exam_code','exam_id');
+            return $this->belongsTo(examination::class,'exam_id','id');
         }
         public function getRouteKeyName()
         {

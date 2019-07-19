@@ -455,6 +455,7 @@ class ComposerStaticInit027345a21b1f8c7a82a8ca87a554c9e0
 
     public static $classMap = array (
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
+        'App\\Examination\\table_examination' => __DIR__ . '/../..' . '/app/Examination/table_examination.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Forum\\Filters\\Filters' => __DIR__ . '/../..' . '/app/Forum/Filters/Filters.php',
         'App\\Forum\\Filters\\ThreadFilters' => __DIR__ . '/../..' . '/app/Forum/Filters/ThreadFilters.php',
@@ -533,6 +534,7 @@ class ComposerStaticInit027345a21b1f8c7a82a8ca87a554c9e0
         'App\\Models\\admin\\user_admin' => __DIR__ . '/../..' . '/app/Models/admin/user_admin.php',
         'App\\Models\\centre\\table_centre' => __DIR__ . '/../..' . '/app/Models/centre/table_centre.php',
         'App\\Models\\classes\\table_classes' => __DIR__ . '/../..' . '/app/Models/classes/table_classes.php',
+        'App\\Models\\course\\subject_course' => __DIR__ . '/../..' . '/app/Models/course/subject_course.php',
         'App\\Models\\course\\table_course' => __DIR__ . '/../..' . '/app/Models/course/table_course.php',
         'App\\Models\\faculty\\user_faculty' => __DIR__ . '/../..' . '/app/Models/faculty/user_faculty.php',
         'App\\Models\\faculty\\user_faculty_head' => __DIR__ . '/../..' . '/app/Models/faculty/user_faculty_head.php',

@@ -6,8 +6,8 @@ namespace App\Http\Controllers\api\exams;
 use  Tymon\JWTAuth\Facades\JWTAuth;
 use App\Http\Controllers\Controller;
 use App\Models\Exam\examination;
-use App\Models\teacher\user_teacher;
-use App\Models\student\user_student;
+
+
 use Auth;
 use Config;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -18,23 +18,15 @@ use \Illuminate\Http\Request;
 class ExaminationController extends Controller
 {   
 
-
-    /**
-     * Class constructor.
-     */
-    public function __construct()
-    {
-        $this->middleware('authteachers');
-        $this->middleware('authstudents')->only('show_rules');
-    }
    protected function validator(array $data)
     {
         return Validator::make($data, [
            // 'class_id' => ['required', 'string', 'max:255'],
             'exam_name' => ['required', 'string',  'max:255'],
-            'topic'  => ['required'],
-            'subject' => ['required'],
-            'date' => ['required'],
+            'course_name'  => ['required'],
+            'subject_name' => ['required'],
+            'start_date' => ['required'],
+            'end_date' => ['required'],
             'pass_mark' => ['required'],
 
 
@@ -43,21 +35,15 @@ class ExaminationController extends Controller
         ]);
     }
 
-    public function index()
-    {
+   
+    public function addexam(Request $request)
+    { 
 
-        $details = examination::all();
-
-        return $details; 
-
-    }
-    public function addexam(Request $request, user_teacher $teacher)
-    {
         $validator=$this->validator($request->all());
         
        if(!$validator->fails())
        {
-           $user= $this->create($request->all(),$teacher);
+           $user= $this->create($request->all());
            
            
            
@@ -81,73 +67,40 @@ class ExaminationController extends Controller
 
 
 
-    protected function create(array $data,user_teacher $teacher)
-    { 
-        return examination::create([
+    protected function create(array $data)
+    {   
 
-        		
-            'exam_code' => 'EX-'.mt_rand(0001,9999).'',
-            'topic' => $data['topic'],
+        return examination::create([
+            'course_name' => $data['course_name'],
             'exam_name' => $data['exam_name'],
-            'subject' => $data['subject'],
-            'date' => $data['date'],
+            'subject_name' => $data['subject_name'],
+            'start_date' => $data['start_date'],
+            'end_date' => $data['end_date'],
             'duration' => $data['duration'],
             'pass_mark' => $data['pass_mark'],
-            're_exam' => $data['re_exam'],
+            
             'description' => $data['description'],
-            'status' => $data['status'],
-            'class_id' => $data['class_id'],
-            'teacher_id_created' => $teacher->t_id,//$data['teacher_id_created'],
+          
+            
 
             
      
         ]);
       } 
+       public function index()
+    {
 
-//   public function edit($id)
-//   {
-// 		     $project = department::find($id);
-// 		     return response()->json
-// 		           ([
-// 		               'success' =>  true,
-// 		               'data' => $project,
-		               
-// 		           ],200);
-//   }
+        $details = examination::all();
 
-// public function update(Request $request, $id)
-// {
-// 		  	$task = department::findOrFail($id);
-// 		    $this->validate($request, [
-// 		    	,
-// 		        'department_name' => 'required',
-// 		        'department_code' => 'required',
-		       
-// 		        'status' => 'required',
+        return $details; 
 
+    }
 
-// 		    ]);
-
-// 		    $input = $request->all();
-// 		    $task->fill($input)->save();
-// 		     return response()->json
-// 		           ([
-// 		               'success' =>  true,
-// 		               'data' => $task,
-		               
-// 		           ],200);
-	
-
-// }		
-
-// // Delete the stream and Delete the department is not be alvalable for any users//
-// //Only can be activated and deactivate//
-
-   public function get_question(examination $exam)
+   public function show_question(examination $exam)
       { 
          //$exam_code = 'EX-4057';
          $questions = $exam->questions()->get();
-
+              dd($question)
              return response()->json
               ([
                   'success' =>  true,
@@ -172,13 +125,16 @@ class ExaminationController extends Controller
 
         public function update(Request $request,examination $exam)
         {
-          $details = $exam->exam_code;
+         
           $this->validate($request, [
          
-           'topic' => 'required',
-           'subject' => 'required',
+           'course_name' => 'required',
+           'subject_name' => 'required',
            
            'pass_mark' => 'required',
+           'start_date' => 'required',
+           'end_date' => 'required',
+
 
 
        ]);
@@ -223,10 +179,6 @@ class ExaminationController extends Controller
 
         }
 
-    public function show_rules(examination $exam)
-	{
-		$details = $exam->exams()->get();
-		dd($details);
-	}
+
 
 }

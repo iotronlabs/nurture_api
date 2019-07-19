@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
+    'App\\Examination\\table_examination' => $baseDir . '/app/Examination/table_examination.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\Forum\\Filters\\Filters' => $baseDir . '/app/Forum/Filters/Filters.php',
     'App\\Forum\\Filters\\ThreadFilters' => $baseDir . '/app/Forum/Filters/ThreadFilters.php',
@@ -85,6 +86,7 @@ return array(
     'App\\Models\\admin\\user_admin' => $baseDir . '/app/Models/admin/user_admin.php',
     'App\\Models\\centre\\table_centre' => $baseDir . '/app/Models/centre/table_centre.php',
     'App\\Models\\classes\\table_classes' => $baseDir . '/app/Models/classes/table_classes.php',
+    'App\\Models\\course\\subject_course' => $baseDir . '/app/Models/course/subject_course.php',
     'App\\Models\\course\\table_course' => $baseDir . '/app/Models/course/table_course.php',
     'App\\Models\\faculty\\user_faculty' => $baseDir . '/app/Models/faculty/user_faculty.php',
     'App\\Models\\faculty\\user_faculty_head' => $baseDir . '/app/Models/faculty/user_faculty_head.php',
