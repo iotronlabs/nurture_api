@@ -11,6 +11,7 @@ use App\Models\subject\subject;
 use Auth;
 use Config;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use \DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use \Illuminate\Http\Request;
@@ -197,6 +198,23 @@ public function getSubjects($stream_name)
    return $data;
 }
 
-// Delete the stream and Delete the department is not be alvalable for any users//
-//Only can be activated and deactivate//
+public function destroy(subject $subject)
+{
+   $task = subject::findOrFail($subject->id);
+
+   $task->delete();
+
+   DB::table('topics')
+       ->where('sub_id',$subject->id)
+       ->delete();
+
+  //dd($task);
+   return response()->json
+               ([
+                   'success' =>  true,
+                   
+
+               ],200);
+}
+
 }
