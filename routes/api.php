@@ -208,6 +208,7 @@ Route::group([ 'prefix' =>'/subjects',
                  Route::get('/','subjects\UpdateSubjectController@index');
                 // Route::post('/login','classes\LoginController@login');
                  Route::get('/stream/{stream_name}','subjects\UpdateSubjectController@getSubjects');
+                 Route::delete('/{subject}','subjects\UpdateSubjectController@destroy');
              }
 
 );
