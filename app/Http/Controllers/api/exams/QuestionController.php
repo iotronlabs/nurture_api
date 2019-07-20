@@ -66,15 +66,7 @@ class QuestionController extends Controller
 
     protected function create(array $data,examination $exam)
     {   
-              $request = Request();
-              $profileImage = $request->file('image');
-              $profileImageSaveAsName = time() . Auth::id() . "-profile." .
-              $profileImage->getClientOriginalExtension();
-
-              $upload_path = 'profile_images/exams/';
-              $profile_image_url = $upload_path . $profileImageSaveAsName;
-              $success = $profileImage->move($upload_path, $profileImageSaveAsName);
-
+              
         return question::create([
           
             
@@ -85,23 +77,26 @@ class QuestionController extends Controller
             'option_2' => $data['option_2'],
             'option_3' => $data['option_3'],
             'option_4' => $data['option_4'],
-            'image' => $profileImage,
+            'image' => $data['image'],
             'answer' => $data['answer'],
             'topics' => $data['topics'],  
      
         ]);
+       
+
       }
-      // public function  show_question(examination $exam)
-      // {
-      //     $details = $exam->questions()->get();
-      //   //   dd($details);
-      //     return response()->json
-      //         ([
-      //             'success' =>  true,
-      //             'data' => $details,
+      
+      public function  show_question(examination $exam)
+      {
+          $details = $exam->questions()->get();
+        //   dd($details);
+          return response()->json
+              ([
+                  'success' =>  true,
+                  'data' => $details,
                    
-      //         ],200);
-      // }
+              ],200);
+      }
 
       public function edit_question(question $question)
      

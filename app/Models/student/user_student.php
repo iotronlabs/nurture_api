@@ -49,8 +49,8 @@ class user_student extends Authenticatable implements JWTSubject
     }
 
     
-    // public function exams()
-    // {
-    //     return $this->hasMany(examination::class, 'class_id','class_id');
-    // }
+    public function exams()
+    {
+        return $this->hasMany(examination::class, 'course_name','s_course');
+    }
 }

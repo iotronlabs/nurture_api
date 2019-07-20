@@ -542,6 +542,7 @@ class ComposerStaticInit027345a21b1f8c7a82a8ca87a554c9e0
         'App\\Models\\forum\\forum_reply' => __DIR__ . '/../..' . '/app/Models/forum/forum_Reply.php',
         'App\\Models\\forum\\forum_save' => __DIR__ . '/../..' . '/app/Models/forum/forum_save.php',
         'App\\Models\\forum\\forum_thread' => __DIR__ . '/../..' . '/app/Models/forum/forum_thread.php',
+        'App\\Models\\result\\exam_result' => __DIR__ . '/../..' . '/app/Models/result/exam_result.php',
         'App\\Models\\staff\\user_staff' => __DIR__ . '/../..' . '/app/Models/staff/user_staff.php',
         'App\\Models\\student\\user_student' => __DIR__ . '/../..' . '/app/Models/student/user_student.php',
         'App\\Models\\sub_admin\\user_sub_admin' => __DIR__ . '/../..' . '/app/Models/sub_admin/user_sub_admin.php',

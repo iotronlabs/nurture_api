@@ -22,10 +22,15 @@ class examination extends Model
 
   
 
-    // public function teacher()
-    // {
-    // 	return $this->belongsTo(user_teacher::class,'teacher_id_created','t_id');
-    // }
+    public function students()
+    {
+    	return $this->belongsTo(user_student::class,'s_course','course_name');
+    }
+
+    public function show_rule()
+    {
+        return $this->hasOne(examination::class);
+    }
 
     // public function students()
     // {

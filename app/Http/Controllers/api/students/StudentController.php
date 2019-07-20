@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\api\students;
 use App\Http\Controllers\Controller;
-
+use App\Models\Exam\examination;
+use App\Models\Exam\questions;
+use App\Models\student\exams;
 use App\Models\student\user_student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -79,20 +81,43 @@ public function destroy($s_id)
 
 
 
-	// public function show_exam(user_student $student)
-	// 		{
+	public function show_exams(user_student $student)
+			{
 				
 
-	// 			$exams = $student->exams()->get();
+				$exams = $student->exams()->get();
                  
- //                return response()->json
-	// 	           ([
-	// 	               'success' =>  true,
-	// 	               'data' => $exams,
+                return response()->json
+		           ([
+		               'success' =>  true,
+		               'data' => $exams,
 		               
-	// 	           ],200);
+		           ],200);
 				
-	// 		}
+			}
+
+		public function show_exam_rule($id)
+		{
+			$details = examination::findOrFail($id);
+			return response()->json
+		           ([
+		               'success' =>  true,
+		               'data' => $details,
+		               
+		           ],200);
+		}
+
+		public function  show_questions(examination $exam)
+      {
+          $details = $exam->questions()->get();
+         
+            // dd($details['question']);
+          return response()->json
+              ([
+                  'success' =>  true,
+                  'data' =>$details,
+              ],200);
+      }
 
 		
 

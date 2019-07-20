@@ -67,6 +67,9 @@ Route::group([ 'prefix' =>'/students',
         Route::get('/edit/{s_id}', 'students\Auth\RegisterController@edit');
         Route::post('/{s_id}','students\Auth\RegisterController@update');
         Route::delete('/{s_id}','students\StudentController@destroy');
+        Route::get('/show_exams/{student}','students\StudentController@show_exams');
+        Route::get('/show_exam_rule/{id}','students\StudentController@show_exam_rule');
+        Route::get('/show_questions/{exam}','students\StudentController@show_questions');
 
 
                 // Route::get('/show_exam/{student}','students\StudentController@show_exam');
@@ -247,20 +250,21 @@ Route::group([ 'prefix' =>'/streams',
 Route::group([ 'prefix' =>'/exams',
             ],function()
              {
-            Route::post('/addexam','exams\ExaminationController@addexam');
-            Route::get('/','exams\ExaminationController@index');
-            Route::get('/{exam}/edit', 'exams\ExaminationController@edit_exam');
-            // Route::get('/{exam}','exams\ExaminationController@get_question');
-            Route::post('/{exam}/update','exams\ExaminationController@update');
-            
-            Route::delete('/{exam}/delete','exams\ExaminationController@destroy');
-            Route::post('/{exam}/deactivate','exams\ExaminationController@deactivate_exam');
-            
-            Route::post('/{exam}/addquestions', 'exams\QuestionController@add_question');
-            Route::get('/{exam}/question/', 'exams\QuestionController@show_question');
-           Route::get('/edit/question/{question}','exams\QuestionController@edit_question');
-           Route::post('/update/question/{question}','exams\QuestionController@update_question');
-         Route::delete('/question/{question}','exams\QuestionController@delete_question');
+    Route::post('/addexam','exams\ExaminationController@addexam');
+    Route::get('/','exams\ExaminationController@index');
+    Route::get('/{exam}/edit', 'exams\ExaminationController@edit_exam');
+    // Route::get('/{exam}','exams\ExaminationController@get_question');
+    Route::post('/{exam}/update','exams\ExaminationController@update');
+    
+    Route::delete('/{exam}/delete','exams\ExaminationController@destroy');
+    Route::post('/{exam}/deactivate','exams\ExaminationController@deactivate_exam');
+    
+    Route::post('/{exam}/addquestions', 'exams\QuestionController@add_question');
+    Route::get('/{exam}/question/', 'exams\QuestionController@show_question');
+   Route::get('/edit/question/{question}','exams\QuestionController@edit_question');
+   Route::post('/update/question/{question}','exams\QuestionController@update_question');
+   Route::delete('/question/{question}','exams\QuestionController@delete_question');
+
              }
 
 );

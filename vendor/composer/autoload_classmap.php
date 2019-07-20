@@ -94,6 +94,7 @@ return array(
     'App\\Models\\forum\\forum_reply' => $baseDir . '/app/Models/forum/forum_Reply.php',
     'App\\Models\\forum\\forum_save' => $baseDir . '/app/Models/forum/forum_save.php',
     'App\\Models\\forum\\forum_thread' => $baseDir . '/app/Models/forum/forum_thread.php',
+    'App\\Models\\result\\exam_result' => $baseDir . '/app/Models/result/exam_result.php',
     'App\\Models\\staff\\user_staff' => $baseDir . '/app/Models/staff/user_staff.php',
     'App\\Models\\student\\user_student' => $baseDir . '/app/Models/student/user_student.php',
     'App\\Models\\sub_admin\\user_sub_admin' => $baseDir . '/app/Models/sub_admin/user_sub_admin.php',

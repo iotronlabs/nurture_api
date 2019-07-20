@@ -100,7 +100,7 @@ class ExaminationController extends Controller
       { 
          //$exam_code = 'EX-4057';
          $questions = $exam->questions()->get();
-              dd($question)
+              
              return response()->json
               ([
                   'success' =>  true,
@@ -178,6 +178,8 @@ class ExaminationController extends Controller
             ]);
 
         }
+
+
 
 
 
