@@ -202,7 +202,7 @@ public function destroy($sub_code)
 {
    $data = subject::where('sub_code',$sub_code)->first('id');
    //   dd($data->id);
-  Db::table('subjects')
+  DB::table('subjects')
         ->where('sub_code',$sub_code)
         ->delete();
    

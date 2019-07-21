@@ -151,12 +151,13 @@ Route::group([ 'prefix' =>'/subadmins',
 Route::group([ 'prefix' =>'/courses',
             ],function()
              {
-         Route::post('/register','courses\RegisterCourseController@register');
-         Route::get('/show/{course_id} ',  'courses\CourseUpdateController@show');
-         Route::get('/edit/{course_id}', 'courses\CourseUpdateController@edit');
-         Route::post('/{course_id}','courses\CourseUpdateController@update');
-         Route::delete('/{course_id}','courses\CourseUpdateController@destroy');
-         Route::get('/',           'courses\CourseUpdateController@index');
+ Route::post('/register','courses\RegisterCourseController@register');
+ Route::get('/show/{course_id} ',  'courses\CourseUpdateController@show');
+ Route::get('/edit/{course_id}', 'courses\CourseUpdateController@edit');
+ Route::post('/{course_id}','courses\CourseUpdateController@update');
+ Route::delete('/{course_id}','courses\CourseUpdateController@destroy');
+ Route::get('/',           'courses\CourseUpdateController@index');
+ Route::get('/showsub/{course_id}','courses\CourseUpdateController@get_sub');
                 // Route::post('/login','classes\LoginController@login');
              }
 
@@ -220,13 +221,14 @@ Route::group([ 'prefix' =>'/subjects',
 Route::group([ 'prefix' =>'/topics',
             ],function()
              {
-                 Route::post('/register','topics\UpdateTopicController@register');
-                 Route::get('/{topic_id}/show',  'topics\UpdateTopicController@show');
-                 Route::get('/{topic_id}/edit', 'topics\UpdateTopicController@edit');
-                 Route::post('/{topic_id}',     'topics\UpdateTopicController@update');
+     Route::post('/register','topics\UpdateTopicController@register');
+     Route::get('/{topic_id}/show',  'topics\UpdateTopicController@show');
+     Route::get('/{topic_id}/edit', 'topics\UpdateTopicController@edit');
+     Route::post('/{topic_id}',     'topics\UpdateTopicController@update');
 
-                 Route::get('/',           'topics\UpdateTopicController@index');
-                // Route::post('/login','classes\LoginController@login');
+     Route::get('/',           'topics\UpdateTopicController@index');
+     Route::get('/show_sub_topic/{sub_id}','topics\UpdateTopicController@show_sub_topic');
+    // Route::post('/login','classes\LoginController@login');
              }
 
 );

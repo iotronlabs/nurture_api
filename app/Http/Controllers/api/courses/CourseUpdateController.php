@@ -152,4 +152,18 @@ public function update(Request $request, $course_id)
 				           ],200);
 
 		}
-}
+
+    public function get_sub($course_id)
+    {
+      $task  =  table_course::findorfail($course_id);
+      $data =   subject_course:: where('course_name',$task->course_name)->get('sub_name');
+       return response()->json
+                   ([
+                       'success' =>  true,
+                        'data' => $data,
+                       
+                   ],200);
+
+      }
+  }
+

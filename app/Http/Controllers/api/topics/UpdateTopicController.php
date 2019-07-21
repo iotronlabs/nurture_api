@@ -11,6 +11,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use  Tymon\JWTAuth\Facades\JWTAuth;
 use Config; 
 use Auth;
+use \DB;
 
 
 class UpdateTopicController extends Controller
@@ -124,4 +125,19 @@ public function update(Request $request, $topic_id)
 	
 
 }		
+  
+  public function show_sub_topic($sub_id)
+  {
+      // $user = table('topics')->where('sub_id',$sub_id)->get();
+     $user = DB::table('topics')
+        ->where('sub_id',$sub_id)
+        ->get();
+      
+      return response()->json
+               ([
+                   'success' =>  true,
+                   'data' => $user,
+                   
+               ],200);
+  }
 }
