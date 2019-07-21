@@ -19,12 +19,12 @@ class RegisterCourseController extends Controller
     {
         return Validator::make($data, [
            // 'class_id' => ['required', 'string', 'max:255'],
-           
+
             'course_name' => ['required', 'string', 'min:1'],
-           
+
             'course_duration' => ['required'],
 
-            
+
 
         ]);
     }
@@ -32,50 +32,50 @@ class RegisterCourseController extends Controller
     public function register(Request $request)
     {
         $validator=$this->validator($request->all());
-        
+
        if(!$validator->fails())
        {
            $user= $this->create($request->all());
-           
-           
-           
+
+
+
            return response()->json
            ([
-           		
-           		
+
+
                'success' =>  true,
-              
+
                //'token' => $token
            ],200);
        }
        return response()->json([
-           
+
            'success' =>false,
            'errors' => $validator->errors()
-           
+
        ]);
     }
 
 
 
     protected function create(array $data)
-    { 
+    {
 
 
 
          table_course::create([
-           
+
           'course_name' => $data['course_name'],
-       
+
           'course_duration' => $data['course_duration'],
 
-          
+
         ]);
 
-        foreach ($data['subjects'] as $subject) {
+        foreach ($data['subject'] as $subject) {
 
          subject_course::create([
-          
+
             'course_name' => $data['course_name'],
 
             'sub_name' => $subject,
