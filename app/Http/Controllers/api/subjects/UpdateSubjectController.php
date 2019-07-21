@@ -190,22 +190,25 @@ public function update(Request $request, $id)
 }   
 
 
-public function getSubjects($stream_name)
-{
+// public function getSubjects($stream_name)
+// {
   
-   $data = subject_stream::where('stream_name',$stream_name)->get('sub_name');
+//    $data = subject_stream::where('stream_name',$stream_name)->get('sub_name');
 
-   return $data;
-}
+//    return $data;
+// }
 
-public function destroy(subject $subject)
+public function destroy($sub_code)
 {
-   $task = subject::findOrFail($subject->id);
-
-   $task->delete();
+   $data = subject::where('sub_code',$sub_code)->first('id');
+   //   dd($data->id);
+  Db::table('subjects')
+        ->where('sub_code',$sub_code)
+        ->delete();
+   
 
    DB::table('topics')
-       ->where('sub_id',$subject->id)
+       ->where('sub_id',$data->id)
        ->delete();
 
   //dd($task);
