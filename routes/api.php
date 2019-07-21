@@ -204,9 +204,9 @@ Route::group([ 'prefix' =>'/subjects',
             ],function()
              {
                  Route::post('/register','subjects\UpdateSubjectController@register');
-                 Route::get('/{subject_id}/show',  'subjects\UpdateSubjectController@show');
-                 Route::get('/{subject_id}/edit', 'subjects\UpdateSubjectController@edit');
-                 Route::post('/{subject_id}','subjects\UpdateSubjectController@update');
+                 Route::get('/{id}/show',  'subjects\UpdateSubjectController@show');
+                 Route::get('/{id}/edit', 'subjects\UpdateSubjectController@edit');
+                 Route::post('/{id}','subjects\UpdateSubjectController@update');
 
                  Route::get('/','subjects\UpdateSubjectController@index');
                 // Route::post('/login','classes\LoginController@login');
