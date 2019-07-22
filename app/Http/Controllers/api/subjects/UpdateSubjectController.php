@@ -200,12 +200,15 @@ public function update(Request $request, $id)
 
 public function destroy($sub_code)
 {
-   $data = subject::where('sub_code',$sub_code)->first('id');
-   //   dd($data->id);
+   $data = subject::where('sub_code',$sub_code)->first();
+    //dd($data);
   DB::table('subjects')
         ->where('sub_code',$sub_code)
         ->delete();
-   
+  
+  DB::table('subject_courses')
+        ->where('sub_name',$data->sub_name)
+        ->delete();
 
    DB::table('topics')
        ->where('sub_id',$data->id)
