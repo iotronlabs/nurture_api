@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\DB;
 
 class CourseUpdateController extends Controller
 {
-   
+
 	 public function index()
     {
         $user_details=table_course::all();
@@ -29,11 +29,11 @@ class CourseUpdateController extends Controller
            ([
                'success' =>  true,
                'data' => $user,
-               
+
            ],200);
-   
-      
-    } 
+
+
+    }
 
   public function edit($course_id)
   {
@@ -42,7 +42,7 @@ class CourseUpdateController extends Controller
            ([
                'success' =>  true,
                'data' => $project,
-               
+
            ],200);
   }
 
@@ -74,34 +74,34 @@ public function update(Request $request, $course_id)
 
 		    $task->save();
 
-		   
-          
+
+
             $data = subject_course::where('course_name',$name)->get('sub_name');
 
             $data->toArray();
 
-           
 
-        
-            for ($i=0; $i < sizeof($data) ; $i++) { 
 
-		          if(!in_array($data[$i]['sub_name'],$request->subjects))
+
+            for ($i=0; $i < sizeof($data) ; $i++) {
+
+		          if(!in_array($data[$i]['sub_name'],$request->subject))
 		          {
 		             DB::table('subject_courses')
 		                    ->where('sub_name',$data[$i]['sub_name'])
 		                    ->where('course_name',$name)
 		                    ->delete();
-	                    
-		          } 
-		         
+
+		          }
+
        		 }
 
-       	foreach ($request->subjects as $subject) {
+       	foreach ($request->subject as $subject) {
 
- 
+
            $task = subject_course::where('sub_name',$subject)
                                 ->where('course_name',$name);
-                                
+
 
 
             if($task->exists())
@@ -116,24 +116,24 @@ public function update(Request $request, $course_id)
             }
             else
             {
-                
+
                 $user_insert =  subject_course::create([
 
                     'sub_name' => $subject,
                     'course_name' => $request->course_name,
-                 
+
                 ]);
             }
 
         }
-		    
+
 	     	return response()->json
 		           ([
 		               'success' =>  true,
-		               
-		               
+
+
 		           ],200);
-	
+
 
 }
 
@@ -148,7 +148,7 @@ public function update(Request $request, $course_id)
 				           ([
 				               'success' =>  true,
 				               // 'data' => '$task',
-				               
+
 				           ],200);
 
 		}
@@ -161,7 +161,7 @@ public function update(Request $request, $course_id)
                    ([
                        'success' =>  true,
                         'data' => $data,
-                       
+
                    ],200);
 
       }
