@@ -81,7 +81,13 @@ public function update(Request $request, $sub_admin_id)
           'sub_admin_address_city' => 'required',
           'sub_admin_address_state'=> 'required',
           'sub_admin_address_pin' => 'required',
-          'sub_admin_centre' => 'required',
+          'sub_admin_centre_name' => 'required',
+          'sub_admin_centre_address' => 'required',
+          'sub_admin_centre_address_city' => 'required',
+          'sub_admin_centre_address_pin' => 'required',
+          'sub_admin_centre_address_state' => 'required',
+          'sub_admin_centre_id' => 'required',
+
           // 'sub_admin_profile_picture' => 'required',
           // 'status' => 'required',
 
