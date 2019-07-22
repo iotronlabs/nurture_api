@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\api\sub_admins;
 
 use App\Http\Controllers\Controller;
+use App\Models\faculty\user_faculty;
+use App\Models\student\user_student;
 use App\Models\sub_admin\user_sub_admin;
-use Illuminate\Http\Request;
 use Auth;
+use Illuminate\Http\Request;
 
 class SubAdminController extends Controller
 {
@@ -133,6 +135,31 @@ public function userlogout()
            ],200);
   }
 
+  public function get_student_details($centre)
+  {
+
+    $data = user_student::where('s_centre',$centre)->get();
+     return response()->json
+           ([
+               'success' =>  true,
+                'data' => $data,
+               // 'token' => $token
+           ],200);
+
+  }
+
+  public function get_faculty_details($centre)
+  {
+
+    $data = user_faculty::where('faculty_centre',$centre)->get();
+     return response()->json
+           ([
+               'success' =>  true,
+                'data' => $data,
+               // 'token' => $token
+           ],200);
+
+  }
 
 
 }

@@ -141,6 +141,8 @@ Route::group([ 'prefix' =>'/subadmins',
              Route::delete('/{sub_admin_id}','sub_admins\SubAdminController@destroy');
              Route::post('/out','sub_admins\SubAdminController@userlogout');
              Route::get('/me', 'sub_admins\SubAdminController@usercheck');
+             Route::get('/showstudentsdetails/{centre}','sub_admins\SubAdminController@get_student_details');
+            Route::get('/showfacultydetails/{centre}','sub_admins\SubAdminController@get_faculty_details');
 
              }
 
