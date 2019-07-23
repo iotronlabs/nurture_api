@@ -22,6 +22,8 @@ class RegisterCentreController extends Controller
            
             'centre_name' => ['required','unique:table_centres']
             
+
+            
         ]);
     }
 

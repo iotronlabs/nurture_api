@@ -13,6 +13,7 @@ use Config;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Symfony\Component\HttpFoundation\File\getClientOriginalExtension;
 use \Illuminate\Http\Request;
 
 class QuestionController extends Controller
@@ -65,23 +66,39 @@ class QuestionController extends Controller
 
 
     protected function create(array $data,examination $exam)
-    {   
+    {     
+
+        $request = request();
+
+        $Image = $request->file('image');
+        $ImageSaveAsName = time() . Auth::id() . "-profile." .
+                                  $Image->getClientOriginalExtension();
+
+        $upload_path = 'exams/question';
+        $image_url =  $ImageSaveAsName;
+        $success = $Image->move($upload_path, $ImageSaveAsName);
               
-        return question::create([
+
+        $data1 =  question::create([
           
             
             'exam_id' => $exam->id,
-	        'type' => $data['type'],
+	          'type' => $data['type'],
             'question' => $data['question'],
             'option_1' => $data['option_1'],
             'option_2' => $data['option_2'],
             'option_3' => $data['option_3'],
             'option_4' => $data['option_4'],
-            'image' => $data['image'],
+            
             'answer' => $data['answer'],
-            'topics' => $data['topics'],  
+            'topics' => $data['topics'], 
+            'image' => $image_url, 
      
         ]);
+
+      
+        return $data1;
+
        
 
       }
@@ -112,10 +129,20 @@ class QuestionController extends Controller
               ],200);
 
       }
-      public function update_question(Request $request, question $question)
-     
-       
+      public function update_question(Request $request, question $question) 
       {
+
+
+        $request = request();
+
+        $Image = $request->file('image');
+        $ImageSaveAsName = time() . Auth::id() . "-profile." .
+                                  $Image->getClientOriginalExtension();
+
+        $upload_path = 'exams/question';
+        $image_url =  $ImageSaveAsName;
+        $success = $Image->move($upload_path, $ImageSaveAsName);
+              
         
         $details = $question->update([
             'type' => $request->type,
@@ -125,6 +152,7 @@ class QuestionController extends Controller
             'option_3' => $request->option_3,
             'option_4' => $request->option_4,
             'answer' => $request->answer,
+            'image'  => $image_url,
 
         ]);
 
