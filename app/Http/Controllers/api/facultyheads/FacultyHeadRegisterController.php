@@ -57,12 +57,14 @@ class FacultyHeadRegisterController extends Controller
         return Validator::make($data, [
             'faculty_head_fname' => ['required', 'string', 'max:255'],
             'faculty_head_email' => ['required', 'string', 'email', 'max:255','unique:user_faculty_heads'],
-            'password' => ['required', 'string', 'min:5'],
+            'password' => ['required', 'string', 'min:8'],
             'faculty_head_gender' => ['required', 'max:1'],
             'faculty_head_contact' => ['required', 'min:10'],
             'faculty_head_dob' => ['required'],
-            'faculty_head_address_state' => ['required'],
-
+            'faculty_head_address_state' => ['required'], 
+            'faculty_head_address_pin' => ['required'],
+            'faculty_head_address' => ['required'],
+            'faculty_ahead_ddress_city' => ['required'],
 
         ]);
     }
