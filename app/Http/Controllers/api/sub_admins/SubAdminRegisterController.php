@@ -57,15 +57,20 @@ class SubAdminRegisterController extends Controller
         return Validator::make($data, [
             'sub_admin_fname' => ['required', 'string', 'max:255'],
             'sub_admin_email' => ['required', 'string', 'email', 'max:255','unique:user_sub_admins'],
-            'password' => ['required', 'string', 'min:5'],
+            'password' => ['required', 'string', 'min:8'],
             'sub_admin_gender' => ['required', 'max:1'],
             'sub_admin_contact' => ['required', 'min:10'],
             'sub_admin_dob' => ['required'],
+            'sub_admin_address_pin' => ['required'],
+            'sub_admin_address' => ['required'],
+            'sub_admin_address_city' => ['required'],
+            'sub_admin_address_state' => ['required'],
+            'sub_admin_centre_address_state' => ['required'],
             'sub_admin_centre_name' => ['required'],
             'sub_admin_centre_id' => ['required'],
             'sub_admin_centre_address' => ['required'],
             'sub_admin_centre_address_city' => ['required'],
-
+            'sub_admin_centre_address_pin' => ['required'],
 
 
         ]);

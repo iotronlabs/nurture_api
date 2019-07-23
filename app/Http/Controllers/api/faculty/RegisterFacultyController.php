@@ -55,11 +55,16 @@ class RegisterFacultyController extends Controller
         return Validator::make($data, [
             'faculty_fname' => ['required', 'string', 'max:255'],
             'faculty_email' => ['required', 'string', 'email', 'max:255','unique:user_faculties'],
-            'password' => ['required', 'string', 'min:5'],
+            'password' => ['required', 'string', 'min:8'],
             'faculty_gender' => ['required', 'max:1'],
             'faculty_contact' => ['required', 'min:10'],
             'faculty_dob' => ['required'],
             'faculty_centre' => ['required'],
+            'faculty_sub' => ['required'],
+            'faculty_address_pin' => ['required'],
+            'faculty_address' => ['required'],
+            'faculty_address_city' => ['required'],
+            'faculty_address_state' => ['required'],
 
         ]);
     }

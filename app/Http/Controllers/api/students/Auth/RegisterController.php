@@ -53,14 +53,27 @@ class RegisterController extends Controller
         return Validator::make($data, [
             's_fname' => ['required', 'string', 'max:255'],
             's_email' => ['required', 'string', 'email', 'max:255','unique:user_students'],
-            'password' => ['required', 'string', 'min:5'],
+            'password' => ['required', 'string', 'min:8'],
             's_gender' => ['required', 'max:1'],
             's_contact' => ['required', 'min:10'],
             's_dob' => ['required'],
             's_centre' => ['required'],
+            's_address_pin' => ['required'],
+            's_address' => ['required'],
+            's_address_city' => ['required'],
+            's_address_state' => ['required'],
+            'guardian_fname' => ['required'],
+            'guardian_email' => ['required'],
+            'guardian_contact' => ['required'],
+            'guardian_address' => ['required'],
+            'guardian_city' => ['required'],
+            'guardian_pin' => ['required'],
+            'guardian_state' => ['required'],
+            's_course' => ['required'],
+            's_class' => ['required'],
 
 
-
+ 
         ]);
     }
 
