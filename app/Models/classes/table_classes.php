@@ -43,13 +43,5 @@ class table_classes extends Authenticatable
         return 'class_centre_name';
     }
 
-    public function getJWTIdentifier()
-    {
-      return $this->getkey();
-    }
-    public function getJWTCustomClaims()
-    {
-      return [];
-
-    }
+   
 }

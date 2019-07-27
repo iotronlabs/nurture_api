@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Tymon\JWTAuth\Facades\JWTAuth;
+use Symfony\Component\HttpFoundation\File\getClientOriginalExtension;
 
 class FacultyHeadRegisterController extends Controller
 {
@@ -64,7 +65,7 @@ class FacultyHeadRegisterController extends Controller
             'faculty_head_address_state' => ['required'],
             'faculty_head_address_pin' => ['required'],
             'faculty_head_address' => ['required'],
-            'faculty_ahead_ddress_city' => ['required'],
+            'faculty_head_address_city' => ['required'],
 
         ]);
     }
@@ -120,12 +121,19 @@ class FacultyHeadRegisterController extends Controller
 
         $request = request();
         // $Image = $data['image'];
-        $Image = $request->file('faculty_head_profile_picture');
-        $ImageSaveAsName = time() . Auth::id() . "-profile." .
-                                $Image->getClientOriginalExtension();
+        if($request->file('faculty_head_profile_picture')!=null)
+        {
+            $Image = $request->file('faculty_head_profile_picture');
+            $ImageSaveAsName = time() . Auth::id() . "-profile." .
+                                    $Image->getClientOriginalExtension();
 
-        $upload_path = 'profile_images/facultyhead';
-        $image_url =  $ImageSaveAsName;
+            $upload_path = 'profile_images/facultyhead';
+            $image_url =  $ImageSaveAsName;
+        }
+        else
+        {
+            $image_url=null;
+        }
 
         $data1 = user_faculty_head::create([
             'faculty_head_fname' => $data['faculty_head_fname'],
@@ -150,7 +158,10 @@ class FacultyHeadRegisterController extends Controller
 
 
         ]);
-        $success = $Image->move($upload_path, $ImageSaveAsName);
+        if($request->file('faculty_head_profile_picture')!=null)
+        {
+            $success = $Image->move($upload_path, $ImageSaveAsName);
+        }
         return $data1;
     }
 }

@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use  Tymon\JWTAuth\Facades\JWTAuth;
+use Symfony\Component\HttpFoundation\File\getClientOriginalExtension;
+
 use Auth;
 class RegisterController extends Controller
 {

@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use  Tymon\JWTAuth\Facades\JWTAuth;
+use Symfony\Component\HttpFoundation\File\getClientOriginalExtension;
+
 use Config;
 use Auth;
 
@@ -127,14 +129,21 @@ class RegisterController extends Controller
     {
         $request = request();
         // $Image = $data['image'];
-        $Image = $request->file('s_profile_picture');
-        $ImageSaveAsName = time() . Auth::id() . "-profile." .
-                                $Image->getClientOriginalExtension();
+        if($request->file('s_profile_picture')!=null)
+        {
+            $Image = $request->file('s_profile_picture');
+            $ImageSaveAsName = time() . Auth::id() . "-profile." .
+                                    $Image->getClientOriginalExtension();
 
-        $upload_path = 'profile_images/students';
-        $image_url =  $ImageSaveAsName;
+            $upload_path = 'profile_images/students';
+            $image_url =  $ImageSaveAsName;
+        }
+        else
+        {
+            $image_url=null;
+        }
 
-        return user_student::create([
+        $data1= user_student::create([
             's_fname' => $data['s_fname'],
 
             's_surname' => $data['s_surname'],
@@ -174,6 +183,11 @@ class RegisterController extends Controller
 
 
         ]);
+        if($request->file('s_profile_picture')!=null)
+        {
+            $success = $Image->move($upload_path, $ImageSaveAsName);
+        }
+        return $data1;
     }
     public function edit($s_id)
   {

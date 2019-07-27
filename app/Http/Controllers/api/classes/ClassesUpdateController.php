@@ -88,13 +88,13 @@ public function update(Request $request, $class_id)
 
 		}
 
-		public function detail(table_classes $class)
+		public function detail($class_centre_name)
 		{
 
 			//dd($class);
 
-			 $user = table_classes::where('class_centre_name',$class->class_centre_name)->get();
-            
+			 $user = table_classes::where('class_centre_name',$class_centre_name)->get();
+
              return response()->json([
              
                  'data' => $user,

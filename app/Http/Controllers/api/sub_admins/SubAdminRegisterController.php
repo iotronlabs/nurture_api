@@ -11,6 +11,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Symfony\Component\HttpFoundation\File\getClientOriginalExtension;
 
 class SubAdminRegisterController extends Controller
 {
@@ -129,13 +130,20 @@ class SubAdminRegisterController extends Controller
 
         $request = request();
         // $Image = $data['image'];
-        $Image = $request->file('sub_admin_profile_picture');
-        $ImageSaveAsName = time() . Auth::id() . "-profile." .
-                                $Image->getClientOriginalExtension();
+        if($request->file('sub_admin_profile_picture')!=null)
+        {
+            $Image = $request->file('sub_admin_profile_picture');
+            $ImageSaveAsName = time() . Auth::id() . "-profile." .
+                                    $Image->getClientOriginalExtension();
 
-        $upload_path = 'profile_images/subadmin';
-        $image_url =  $ImageSaveAsName;
-
+            $upload_path = 'profile_images/subadmin';
+            $image_url =  $ImageSaveAsName;
+        }
+        else
+        {
+            $image_url = null;
+        }
+        
         $data1 =  user_sub_admin::create([
         'sub_admin_fname' => $data['sub_admin_fname'],
         'sub_admin_surname' => $data['sub_admin_surname'],
@@ -173,7 +181,10 @@ class SubAdminRegisterController extends Controller
 
 
         ]);
-        $success = $Image->move($upload_path, $ImageSaveAsName);
+        if($request->file('sub_admin_profile_picture')!=null)
+        {
+            $success = $Image->move($upload_path, $ImageSaveAsName);
+        }
         return $data1;
     }
 }

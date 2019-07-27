@@ -108,13 +108,21 @@ class RegisterFacultyController extends Controller
 
 
             $request = request();
-            // $Image = $data['image'];
-            $Image = $request->file('faculty_profile_picture');
-            $ImageSaveAsName = time() . Auth::id() . "-profile." .
-                                    $Image->getClientOriginalExtension();
-
-            $upload_path = 'profile_images/faculty';
-            $image_url =  $ImageSaveAsName;
+            
+            if($request->file('faculty_profile_picture')!=null)
+            {
+                $Image = $request->file('faculty_profile_picture');
+                $ImageSaveAsName = time() . Auth::id() . "-profile." .
+                                        $Image->getClientOriginalExtension();
+    
+                $upload_path = 'profile_images/faculty';
+                $image_url =  $ImageSaveAsName;
+            }
+            else
+            {
+                $image_url=null;
+            }
+           
 
            $data1 =  user_faculty::create([
 
@@ -138,7 +146,11 @@ class RegisterFacultyController extends Controller
 
 
         ]);
-        $success = $Image->move($upload_path, $ImageSaveAsName);
+        if($request->file('faculty_profile_picture')!=null)
+        {
+            $success = $Image->move($upload_path, $ImageSaveAsName);
+        }
+       
         return $data1;
 
       }
