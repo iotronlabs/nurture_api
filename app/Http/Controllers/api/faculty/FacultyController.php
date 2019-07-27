@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 
 class FacultyController extends Controller
-{ 
+{
 
 
     public function index()
@@ -35,7 +35,7 @@ class FacultyController extends Controller
 
     }
 
-  
+
 
 
     public function destroy($faculty_id)
@@ -70,7 +70,7 @@ class FacultyController extends Controller
     public function update(Request $request, $faculty_id)
     {
 
-           
+
 
             $task = user_faculty::findOrFail($faculty_id);
 
@@ -108,9 +108,9 @@ class FacultyController extends Controller
 
 
     }
-      
 
-    public function usercheck(Request $request) 
+
+    public function usercheck(Request $request)
       {
         return response()->json
                ([

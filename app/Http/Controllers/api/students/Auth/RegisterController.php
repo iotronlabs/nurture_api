@@ -30,9 +30,9 @@ class RegisterController extends Controller
    */
 
     public function __construct()
-    { 
+    {
       $this->middleware('authadminsubadmin');
-     
+
     }
 
 
@@ -73,7 +73,7 @@ class RegisterController extends Controller
             's_class' => ['required'],
 
 
- 
+
         ]);
     }
 
@@ -125,24 +125,18 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $request = request();
+        // $Image = $data['image'];
+        $Image = $request->file('s_profile_picture');
+        $ImageSaveAsName = time() . Auth::id() . "-profile." .
+                                $Image->getClientOriginalExtension();
 
-
-
-              // $request = request();
-
-              // $profileImage = $request->file('s_profile_picture');
-              // $profileImageSaveAsName = time() . Auth::id() . "-profile." .
-              //                           $profileImage->getClientOriginalExtension();
-
-              // $upload_path = 'profile_images/student/';
-              // $profile_image_url = $upload_path . $profileImageSaveAsName;
-              // $success = $profileImage->move($upload_path, $profileImageSaveAsName);
-
-
+        $upload_path = 'profile_images/students';
+        $image_url =  $ImageSaveAsName;
 
         return user_student::create([
             's_fname' => $data['s_fname'],
-            
+
             's_surname' => $data['s_surname'],
             's_email' => $data['s_email'],
             'password' => Hash::make($data['password']),
@@ -158,7 +152,7 @@ class RegisterController extends Controller
             's_address_pin' => $data['s_address_pin'],
             's_address_state' => $data['s_address_state'],
             'guardian_fname' => $data['guardian_fname'],
-            
+
             'guardian_surname' => $data['guardian_surname'],
             'guardian_email' => $data['guardian_email'],
             'guardian_contact' => $data['guardian_contact'],
@@ -173,8 +167,8 @@ class RegisterController extends Controller
             'fee_structure' => $data['fee_structure'],
             'scholarship' => $data['scholarship'],
             'fee_period' => $data['fee_period'],
-           
-            // 's_profile_picture' => $profile_image_url,
+
+            's_profile_picture' => $image_url,
 
 
 
@@ -197,7 +191,7 @@ class RegisterController extends Controller
 public function update(Request $request, $s_id)
 {
 
-       
+
 
         $task = user_student::findOrFail($s_id);
 

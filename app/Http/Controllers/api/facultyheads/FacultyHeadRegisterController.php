@@ -61,7 +61,7 @@ class FacultyHeadRegisterController extends Controller
             'faculty_head_gender' => ['required', 'max:1'],
             'faculty_head_contact' => ['required', 'min:10'],
             'faculty_head_dob' => ['required'],
-            'faculty_head_address_state' => ['required'], 
+            'faculty_head_address_state' => ['required'],
             'faculty_head_address_pin' => ['required'],
             'faculty_head_address' => ['required'],
             'faculty_ahead_ddress_city' => ['required'],
@@ -118,21 +118,16 @@ class FacultyHeadRegisterController extends Controller
     protected function create(array $data)
     {
 
+        $request = request();
+        // $Image = $data['image'];
+        $Image = $request->file('faculty_head_profile_picture');
+        $ImageSaveAsName = time() . Auth::id() . "-profile." .
+                                $Image->getClientOriginalExtension();
 
+        $upload_path = 'profile_images/facultyhead';
+        $image_url =  $ImageSaveAsName;
 
-    // /         $request = request();
-
-              // $profileImage = $request->file('faculty_head_profile_picture');
-              // $profileImageSaveAsName = time() . Auth::id() . "-profile." .
-              //                           $profileImage->getClientOriginalExtension();
-
-              // $upload_path = 'profile_images/student/';
-              // $profile_image_url = $upload_path . $profileImageSaveAsName;
-              // $success = $profileImage->move($upload_path, $profileImageSaveAsName);
-
-
-
-        return user_faculty_head::create([
+        $data1 = user_faculty_head::create([
             'faculty_head_fname' => $data['faculty_head_fname'],
             'faculty_head_surname' => $data['faculty_head_surname'],
             'faculty_head_email' => $data['faculty_head_email'],
@@ -149,12 +144,14 @@ class FacultyHeadRegisterController extends Controller
             'faculty_head_address_city' => $data['faculty_head_address_city'],
 
 
-            // 'faculty_head_profile_picture' => $profile_image_url,
+             'faculty_head_profile_picture' => $image_url,
 
 
 
 
         ]);
+        $success = $Image->move($upload_path, $ImageSaveAsName);
+        return $data1;
     }
 }
 

@@ -17,71 +17,71 @@ use Symfony\Component\HttpFoundation\File\getClientOriginalExtension;
 use \Illuminate\Http\Request;
 
 class QuestionController extends Controller
-{   
+{
 
-   
+
    protected function validator(array $data)
     {
         return Validator::make($data, [
-           // 'class_id' => ['required', 'string', 'max:255'],
-            
+        //    'class_id' => ['required', 'string', 'max:255'],
+
             'type'  => ['required'],
             'question' => ['required'],
             'answer' => ['required'],
 
- 
+
         ]);
     }
 
     public function add_question(Request $request,examination $exam)
-    {   
-      
+    {
+
        $validator=$this->validator($request->all());
-        
+
        if(!$validator->fails())
        {
            $user= $this->create($request->all(),$exam);
-          
-             
-           
+
+
+
            return response()->json
            ([
-           		
-           		
+
+
                'success' =>  true,
-              
+
                'data' => $user,
-               
+
                //'token' => $token
            ],200);
        }
        return response()->json([
-           
+
            'success' =>false,
            'errors' => $validator->errors()
-           
+
        ]);
     }
 
 
 
     protected function create(array $data,examination $exam)
-    {     
+    {
 
         $request = request();
-
+        // $Image = $data['image'];
         $Image = $request->file('image');
         $ImageSaveAsName = time() . Auth::id() . "-profile." .
                                   $Image->getClientOriginalExtension();
 
         $upload_path = 'exams/question';
         $image_url =  $ImageSaveAsName;
-        $success = $Image->move($upload_path, $ImageSaveAsName);
-              
+
+
 
         $data1 =  question::create([
-          
-            
+
+
             'exam_id' => $exam->id,
 	          'type' => $data['type'],
             'question' => $data['question'],
@@ -89,20 +89,20 @@ class QuestionController extends Controller
             'option_2' => $data['option_2'],
             'option_3' => $data['option_3'],
             'option_4' => $data['option_4'],
-            
+
             'answer' => $data['answer'],
-            'topics' => $data['topics'], 
-            'image' => $image_url, 
-     
+            'topics' => $data['topics'],
+            'image' => $image_url,
+
         ]);
 
-      
+        $success = $Image->move($upload_path, $ImageSaveAsName);
         return $data1;
 
-       
+
 
       }
-      
+
       public function  show_question(examination $exam)
       {
           $details = $exam->questions()->get();
@@ -111,25 +111,25 @@ class QuestionController extends Controller
               ([
                   'success' =>  true,
                   'data' => $details,
-                   
+
               ],200);
       }
 
       public function edit_question(question $question)
-     
+
        {
-        
+
        $details = $question;
 
        return response()->json
               ([
                   'success' =>  true,
                   'data' => $details,
-                   
+
               ],200);
 
       }
-      public function update_question(Request $request, question $question) 
+      public function update_question(Request $request, question $question)
       {
 
 
@@ -142,8 +142,8 @@ class QuestionController extends Controller
         $upload_path = 'exams/question';
         $image_url =  $ImageSaveAsName;
         $success = $Image->move($upload_path, $ImageSaveAsName);
-              
-        
+
+
         $details = $question->update([
             'type' => $request->type,
             'question' => $request->question,
@@ -156,32 +156,32 @@ class QuestionController extends Controller
 
         ]);
 
-       
+
 
        return response()->json
               ([
                   'success' =>  true,
                   'data' => $details,
-                   
+
               ],200);
 
       }
 
     public function delete_question(question $question)
     {
-         
+
             $question->delete();
              return response()->json
               ([
                   'success' =>  true,
-                  
-                   
+
+
               ],200);
 }
 
-    
 
-      
+
+
 
 
 }

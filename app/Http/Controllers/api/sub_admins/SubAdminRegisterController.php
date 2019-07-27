@@ -127,19 +127,16 @@ class SubAdminRegisterController extends Controller
 
 
 
-      $request = request();
+        $request = request();
+        // $Image = $data['image'];
+        $Image = $request->file('sub_admin_profile_picture');
+        $ImageSaveAsName = time() . Auth::id() . "-profile." .
+                                $Image->getClientOriginalExtension();
 
-              // $profileImage = $request->file('sub_admin_profile_picture');
-              // $profileImageSaveAsName = time() . Auth::id() . "-profile." .
-              //                           $profileImage->getClientOriginalExtension();
+        $upload_path = 'profile_images/subadmin';
+        $image_url =  $ImageSaveAsName;
 
-              // $upload_path = 'profile_images/student/';
-              // $profile_image_url = $upload_path . $profileImageSaveAsName;
-              // $success = $profileImage->move($upload_path, $profileImageSaveAsName);
-
-
-
-        return user_sub_admin::create([
+        $data1 =  user_sub_admin::create([
         'sub_admin_fname' => $data['sub_admin_fname'],
         'sub_admin_surname' => $data['sub_admin_surname'],
         'sub_admin_email' => $data['sub_admin_email'],
@@ -170,12 +167,14 @@ class SubAdminRegisterController extends Controller
 
 
 
-            // 'sub_admin_profile_picture' => $profile_image_url,
+        'sub_admin_profile_picture' => $image_url,
 
 
 
 
         ]);
+        $success = $Image->move($upload_path, $ImageSaveAsName);
+        return $data1;
     }
 }
 

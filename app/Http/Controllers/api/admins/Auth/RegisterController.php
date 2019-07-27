@@ -54,8 +54,8 @@ class RegisterController extends Controller
         ]);
     }
 
-    
-     
+
+
     /*
       * Handle a registration request for the application.
      *
@@ -65,16 +65,16 @@ class RegisterController extends Controller
     public function register(Request $request)
     {
         $validator=$this->validator($request->all());
-        
+
        if(!$validator->fails())
        {
            $user= $this->create($request->all());
-           
-           
+
+
            $token= Auth::guard('admins')->attempt($request->only('email','password'));
-           
-           
-           
+
+
+
            return response()->json
            ([
                'success' =>  true,
@@ -83,14 +83,14 @@ class RegisterController extends Controller
            ],200);
        }
        return response()->json([
-           
+
            'success' =>false,
            'errors' => $validator->errors()
-           
+
        ]);
     }
 
-    
+
     /**
      * Create a new user instance after a valid registration.
      *
@@ -103,9 +103,9 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-           
-            
-            
+
+
+
         ]);
     }
 }

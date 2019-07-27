@@ -11,9 +11,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Tymon\JWTAuth\Facades\JWTAuth;
+use Symfony\Component\HttpFoundation\File\getClientOriginalExtension;
+
+
 
 class RegisterFacultyController extends Controller
-{	
+{
 	 use RegistersUsers;
 
     /**
@@ -32,7 +35,7 @@ class RegisterFacultyController extends Controller
     public function __construct()
     {
 
-        $this->middleware('authfacultyheadsubadmin');
+        $this->middleware('authadmin');
 
     }
 
@@ -102,8 +105,18 @@ class RegisterFacultyController extends Controller
 
     protected function create(array $data)
     {
-        
-           return user_faculty::create([
+
+
+            $request = request();
+            // $Image = $data['image'];
+            $Image = $request->file('faculty_profile_picture');
+            $ImageSaveAsName = time() . Auth::id() . "-profile." .
+                                    $Image->getClientOriginalExtension();
+
+            $upload_path = 'profile_images/faculty';
+            $image_url =  $ImageSaveAsName;
+
+           $data1 =  user_faculty::create([
 
             'faculty_fname' => $data['faculty_fname'],
             'faculty_surname' => $data['faculty_surname'],
@@ -112,17 +125,21 @@ class RegisterFacultyController extends Controller
             'faculty_gender' => $data['faculty_gender'],
             'faculty_contact' => $data['faculty_contact'],
             'faculty_dob' => $data['faculty_dob'],
-          
+
             'faculty_address' => $data['faculty_address'],
-          
+
             'faculty_address_pin' => $data['faculty_address_pin'],
             'faculty_address_state' => $data['faculty_address_state'],
             'faculty_address_city' => $data['faculty_address_city'],
             'faculty_sub' => $data['faculty_sub'],
             'faculty_centre' => $data['faculty_centre'],
+            'faculty_profile_picture' => $image_url,
 
 
- 
+
         ]);
+        $success = $Image->move($upload_path, $ImageSaveAsName);
+        return $data1;
+
       }
 }
