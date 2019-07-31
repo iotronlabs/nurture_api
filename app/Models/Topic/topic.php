@@ -20,5 +20,9 @@ class topic extends Authenticatable
     protected $guarded =[
         ];
 
+      public function getRouteKeyName()
+      {
+      	return $this->topic_name;
+      }
    
 }

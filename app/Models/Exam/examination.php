@@ -3,7 +3,7 @@
 namespace App\Models\Exam;
 
 use App\Models\Exam\question;
-
+use App\Models\subject\subject;
 use Illuminate\Database\Eloquent\Model;
 
 
@@ -36,6 +36,11 @@ class examination extends Model
     // {
     //     return $this->belongsTo('user_student::class', 'class_id', 'class_id');
     // }
+
+    public function subject()
+    {
+        return $this->belongsTo(subject::class,'subject_name','sub_name');
+    }
 
   
     

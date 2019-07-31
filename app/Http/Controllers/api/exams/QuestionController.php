@@ -175,7 +175,7 @@ class QuestionController extends Controller
             'option_8' => $image_url_option8,
 
             'answer' => $data['answer'],
-            'topics' => $data['topics'],
+            
             'question_image' => $image_url_question,
 
         ]);

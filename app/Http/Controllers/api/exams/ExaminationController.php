@@ -6,8 +6,8 @@ namespace App\Http\Controllers\api\exams;
 use  Tymon\JWTAuth\Facades\JWTAuth;
 use App\Http\Controllers\Controller;
 use App\Models\Exam\examination;
-
-
+use App\Models\Topic\topic;
+use App\Models\subject\subject;
 use Auth;
 use Config;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -179,6 +179,27 @@ class ExaminationController extends Controller
 
         }
 
+        public function get_topics(examination $exam)
+        {
+          $data = $exam->subject_name;
+
+          // dd($data);
+
+           $subject_id = subject::where('sub_name',$data)->get('id');
+          
+           //dd($subject_id->toArray()[0]["id"]);
+
+           $get_topic  = topic::where('sub_id',$subject_id[0]["id"])->get('topic_name');
+
+           //dd($get_topic);
+
+            return response()->json([
+                'success' => true,
+                'data' => $get_topic,
+            ]);
+
+
+        }
 
 
 
