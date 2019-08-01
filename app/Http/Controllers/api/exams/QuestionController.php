@@ -123,7 +123,7 @@ class QuestionController extends Controller
 
 
 
-       
+
 
           if($request->file('option_7')!=null)
         {
@@ -157,9 +157,9 @@ class QuestionController extends Controller
         {
              $image_url_option8 = "null";
         }
-        
-       
-        
+
+
+
         $data1 =  question::create([
 
             'exam_id' => $exam->id,
@@ -173,9 +173,10 @@ class QuestionController extends Controller
             'option_6' => $image_url_option6,
             'option_7' => $image_url_option7,
             'option_8' => $image_url_option8,
+            'topics' => $data['topics'],
 
             'answer' => $data['answer'],
-            
+
             'question_image' => $image_url_question,
 
         ]);

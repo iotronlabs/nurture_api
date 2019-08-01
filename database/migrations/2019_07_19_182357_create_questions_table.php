@@ -19,14 +19,18 @@ class CreateQuestionsTable extends Migration
            $table->Increments('question_id');
            $table->integer('exam_id');
            $table->string('type');
-           $table->string('question');
-           $table->string('option_1');
-           $table->string('option_2');
-           $table->string('option_3');
-           $table->string('option_4');
+           $table->string('question')->nullable();
+           $table->string('option_1')->nullable();
+           $table->string('option_2')->nullable();
+           $table->string('option_3')->nullable();
+           $table->string('option_4')->nullable();
+           $table->string('option_5')->nullable();
+           $table->string('option_6')->nullable();
+           $table->string('option_7')->nullable();
+           $table->string('option_8')->nullable();
            $table->string('answer');
            $table->string('topics');
-           $table->string('image')->nullable();
+           $table->string('question_image')->nullable();
            $table->timestamps();
         });
     }
