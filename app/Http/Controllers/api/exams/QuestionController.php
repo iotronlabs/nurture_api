@@ -73,7 +73,7 @@ class QuestionController extends Controller
         if($request->file('question_image')!=null)
         {
               $image_question = $request->file('question_image');
-              $ImageSaveAsName = time() . Auth::id().
+              $ImageSaveAsName = time() . Auth::id(). "-question.".
                                       $image_question->getClientOriginalExtension();
 
               $upload_path = 'exams/question';
@@ -90,7 +90,7 @@ class QuestionController extends Controller
       if($request->file('option_5')!=null)
         {
               $image_option5 = $request->file('option_5');
-              $ImageSaveAsOption5 = time() . Auth::id().
+              $ImageSaveAsOption5 = time() . Auth::id(). "-option5.".
                                       $image_option5->getClientOriginalExtension();
 
               $upload_path = 'exams/question';
@@ -108,7 +108,7 @@ class QuestionController extends Controller
           if($request->file('option_6')!=null)
         {
               $image_option6 = $request->file('option_6');
-              $ImageSaveAsOption6 = time() . Auth::id().
+              $ImageSaveAsOption6 = time() . Auth::id(). "-option6.".
                                       $image_option6->getClientOriginalExtension();
 
               $upload_path = 'exams/question';
@@ -128,7 +128,7 @@ class QuestionController extends Controller
           if($request->file('option_7')!=null)
         {
               $image_option7 = $request->file('option_7');
-              $ImageSaveAsOption7 = time() . Auth::id().
+              $ImageSaveAsOption7 = time() . Auth::id(). "-option7.".
                                       $image_option7->getClientOriginalExtension();
 
               $upload_path = 'exams/question';
@@ -145,7 +145,7 @@ class QuestionController extends Controller
           if($request->file('option_8')!=null)
         {
               $image_option8 = $request->file('option_8');
-              $ImageSaveAsOption8 = time() . Auth::id().
+              $ImageSaveAsOption8 = time() . Auth::id(). "-option8s.".
                                       $image_option8->getClientOriginalExtension();
 
               $upload_path = 'exams/question';
@@ -217,17 +217,104 @@ class QuestionController extends Controller
       public function update_question(Request $request, question $question)
       {
 
-
         $request = request();
+        // $Image = $data['image'];
+        if($request->file('question_image')!=null)
+        {
+              $image_question = $request->file('question_image');
+              $ImageSaveAsName = time() . Auth::id() . "-question." .
+                                      $image_question->getClientOriginalExtension();
 
-        $Image = $request->file('image');
-        $ImageSaveAsName = time() . Auth::id() . "-profile." .
-                                  $Image->getClientOriginalExtension();
+              $upload_path = 'exams/question';
+              $image_url_question =  $ImageSaveAsName;
+              $image_question->move($upload_path, $ImageSaveAsName);
 
-        $upload_path = 'exams/question';
-        $image_url =  $ImageSaveAsName;
-        $success = $Image->move($upload_path, $ImageSaveAsName);
+        }
+        else
+        {
+             $image_url_question = "null";
+        }
 
+
+      if($request->file('option_5')!=null)
+        {
+              $image_option5 = $request->file('option_5');
+              $ImageSaveAsOption5 = time() . Auth::id(). "-option5.".
+                                           $image_option5->getClientOriginalExtension();
+
+              $upload_path = 'exams/question';
+              $image_url_option5 =  $upload_path . $ImageSaveAsOption5;
+              $image_option5->move($upload_path, $ImageSaveAsOption5);
+
+
+        }
+        else
+        {
+             $image_url_option5 = "null";
+        }
+
+
+
+          if($request->file('option_6')!=null)
+        {
+              $image_option6 = $request->file('option_6');
+              $ImageSaveAsOption6 = time() . Auth::id(). "-option6.".
+                                      $image_option6->getClientOriginalExtension();
+
+              $upload_path = 'exams/question/';
+                $image_url_option6 =  $upload_path . $ImageSaveAsOption6;
+              $image_option6->move($upload_path, $ImageSaveAsOption6);
+
+        }
+        else
+        {
+             $image_url_option6 = "null";
+        }
+
+
+
+
+
+          if($request->file('option_7')!=null)
+        {
+              $image_option7 = $request->file('option_7');
+              $ImageSaveAsOption7 =time() . Auth::id(). "-option7.".
+                                      $image_option7->getClientOriginalExtension();
+
+              $upload_path = 'exams/question/';
+              $image_url_option7 =  $upload_path . $ImageSaveAsOption7;
+              $image_option7->move($upload_path, $ImageSaveAsOption7);
+
+
+        }
+        else
+        {
+             $image_url_option7 = "null";
+        }
+
+
+          if($request->file('option_8')!=null)
+        {
+              $image_option8 = $request->file('option_8');
+              $ImageSaveAsOption8 =time() . Auth::id(). "-option8.".
+                                      $image_option8->getClientOriginalExtension();
+
+              $upload_path = 'exams/question/';
+              $image_url_option8 =  $upload_path . $ImageSaveAsOption8;
+              $image_option8->move($upload_path, $ImageSaveAsOption8);
+
+              //$upload_path = 'profile_images/student/';
+              // $profile_image_url = $upload_path . $profileImageSaveAsName;
+              // $success = $profileImage->move($upload_path, $profileImageSaveAsName);
+
+
+        }
+        else
+        {
+             $image_url_option8 = "null";
+        }
+
+        
 
         $details = $question->update([
             'type' => $request->type,
@@ -236,9 +323,15 @@ class QuestionController extends Controller
             'option_2' => $request->option_2,
             'option_3' => $request->option_3,
             'option_4' => $request->option_4,
-            'answer' => $request->answer,
-            'image'  => $image_url,
+            'option_5' => $image_url_option5,
+            'option_6' => $image_url_option6,
+            'option_7' => $image_url_option7,
+            'option_8' => $image_url_option8,
+            'topics' =>   $request->topics,
 
+            'answer' => $request->answer,
+
+            'question_image' => $image_url_question,
         ]);
 
 

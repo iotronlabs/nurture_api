@@ -6,11 +6,13 @@ namespace App\Http\Controllers\api\exams;
 use  Tymon\JWTAuth\Facades\JWTAuth;
 use App\Http\Controllers\Controller;
 use App\Models\Exam\examination;
+use App\Models\Exam\question;
 use App\Models\Topic\topic;
 use App\Models\subject\subject;
 use Auth;
 use Config;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use \DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use \Illuminate\Http\Request;
@@ -160,10 +162,20 @@ class ExaminationController extends Controller
 
         public function destroy (examination $exam)
         {
-            $exam->delete();
+            $exam_id = $exam->id;
+            
+            DB::table('questions')
+              ->where('exam_id',$exam_id)
+               ->delete();
+
+            $data = $exam->delete();
+           
+                                                    // Need to Changed this query in future
+
              return response()->json
               ([
                   'success' =>  true,
+
                   
                    
               ],200);
