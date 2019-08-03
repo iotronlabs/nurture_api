@@ -27,6 +27,7 @@ class CreateExaminationsTable extends Migration
             $table->integer('pass_mark')->nullable();
 
             $table->string('description');
+            $table->integer('t_questions')->default(0);
             $table->string('status')->default('Active');
 
 

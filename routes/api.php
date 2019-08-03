@@ -275,3 +275,12 @@ Route::group([ 'prefix' =>'/exams',
 
 );
 
+
+Route::group([ 'prefix' =>'/results',
+            ],function()
+             {
+             Route::post('/{exam_id}/create','result\ResultController@create');
+             Route::post('/{exam}/check','result\ResultController@check');
+             }
+
+);

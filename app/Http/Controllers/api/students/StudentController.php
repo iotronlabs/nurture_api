@@ -25,7 +25,7 @@ class StudentController extends Controller
     {
 
 
-      $user= user_student::findorfail($s_id);
+      $user= user_student::findOrfail($s_id);
 
       return response()->json
            ([

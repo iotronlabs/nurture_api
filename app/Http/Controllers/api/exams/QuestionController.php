@@ -10,6 +10,7 @@ use App\Models\Exam\question;
 use App\Models\teacher\user_teacher;
 use Auth;
 use Config;
+use \DB;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -158,7 +159,9 @@ class QuestionController extends Controller
              $image_url_option8 = "null";
         }
 
-
+        
+        $inc_que = $exam->t_questions;
+        $inc_que = $inc_que + 1;
 
         $data1 =  question::create([
 
@@ -180,6 +183,14 @@ class QuestionController extends Controller
             'question_image' => $image_url_question,
 
         ]);
+   
+        
+        DB::table('examinations')
+            ->where('id',$exam->id)
+            ->update([
+              't_questions' => $inc_que
+            ]);
+
 
         // $success = $Image->move($upload_path, $ImageSaveAsName);
         return $data1;
@@ -349,6 +360,18 @@ class QuestionController extends Controller
     {
 
             $question->delete();
+
+            $eid = $question->exam_id;
+           
+            $tque = examination::findOrFail($eid)->t_questions;
+          
+            DB::table('examinations')
+            ->where('id',$eid)
+            ->update([
+              't_questions' => $tque - 1,
+            ]);
+
+
              return response()->json
               ([
                   'success' =>  true,
