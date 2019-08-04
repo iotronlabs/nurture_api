@@ -269,7 +269,8 @@ Route::group([ 'prefix' =>'/exams',
    Route::get('/edit/question/{question}','exams\QuestionController@edit_question');
    Route::post('/update/question/{question}','exams\QuestionController@update_question');
    Route::delete('/question/{question}','exams\QuestionController@delete_question');
-   Route :: get('/gettopics/{exam}','exams\ExaminationController@get_topics');
+   Route:: get('/gettopics/{exam}','exams\ExaminationController@get_topics');
+   Route::get('/getallid','exams\ExaminationController@getid');
 
              }
 

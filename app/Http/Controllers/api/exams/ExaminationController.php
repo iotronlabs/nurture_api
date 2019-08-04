@@ -213,6 +213,16 @@ class ExaminationController extends Controller
 
         }
 
+        public function getid()
+        {
+
+          $id = examination::get('id');
+
+          return response()->json([
+                'success' => true,
+                'data' => $id,
+            ]);
+        }
 
 
 
