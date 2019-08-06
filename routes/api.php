@@ -285,3 +285,16 @@ Route::group([ 'prefix' =>'/results',
              }
 
 );
+
+Route::group([ 'prefix' =>'/materials',
+            ],function()
+             {
+                Route::post('add', 'materials\StudyMaterialsController@add');
+                Route::get('show/{id}', 'materials\StudyMaterialsController@show');
+                Route::post('update/{id}', 'materials\StudyMaterialsController@update');
+                Route::delete('delete/{id}', 'materials\StudyMaterialsController@destroy');
+
+
+             }
+
+);
