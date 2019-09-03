@@ -209,6 +209,10 @@ class StudyMaterialsController extends Controller
 //return redirect()->route('api/teachers/Auth/teacherController');
 }
 
+		public function showall($sub_name)
+		{
+			return material::where('subject',$sub_name)->get();
+		}
 
 
 		

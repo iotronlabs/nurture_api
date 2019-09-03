@@ -293,7 +293,7 @@ Route::group([ 'prefix' =>'/materials',
                 Route::get('show/{id}', 'materials\StudyMaterialsController@show');
                 Route::post('update/{id}', 'materials\StudyMaterialsController@update');
                 Route::delete('delete/{id}', 'materials\StudyMaterialsController@destroy');
-
+                Route::get('{sub_name}', 'materials\StudyMaterialsController@showall'); 
 
              }
  );            
