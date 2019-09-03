@@ -296,5 +296,16 @@ Route::group([ 'prefix' =>'/materials',
 
 
              }
+ );            
+
+ Route::group([ 'prefix' =>'/attendence',] ,function()
+             {
+                
+                Route::get('/centre/{center_name}', 'Attendence\AttendenceController@getclasses');
+                Route::post('/students', 'Attendence\AttendenceController@getstudents');
+                Route::post('/attendence', 'Attendence\AttendenceController@add');
+               
+
+             }
 
 );

@@ -80,7 +80,7 @@ class StudyMaterialsController extends Controller
 	           	 'course' => $data['course'],
 	           	 'subject' => $data['subject'],
 	           	 'upload_file' => $new_file,
-
+	           	 'topic' => $data['topic'],
 
 	     
 	        ]);
@@ -155,6 +155,7 @@ class StudyMaterialsController extends Controller
 		      			'description' => $request->description,
 		      			'course' => $request->course,
 		      			'subject' => $request->subject,
+		      			'topic' => $request->topic,
 
 		      		]);
 

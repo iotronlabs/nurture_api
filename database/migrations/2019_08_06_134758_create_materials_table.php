@@ -15,11 +15,12 @@ class CreateMaterialsTable extends Migration
     {
         Schema::create('materials', function (Blueprint $table) {
             $table->Increments('id');
-            $table->string('title');
+            $table->string('title')->nullable();
             $table->string('description')->nullable();
-            $table->string('course');
-            $table->string('subject');
-            $table->string('upload_file');
+            $table->string('course')->nullable();
+            $table->string('subject')->nullable();
+            $table->string('upload_file')->nullable();
+            $table->string('topic')->nullable();
 
             $table->timestamps();
         });
