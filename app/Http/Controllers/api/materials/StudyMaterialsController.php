@@ -20,45 +20,45 @@ class StudyMaterialsController extends Controller
         return Validator::make($data, [
            // 'class_id' => ['required', 'string', 'max:255'],
             'title' => ['required', 'string',  'max:255'],
-            'course'  => ['required'],
+            // 'course'  => ['required'],
             'subject' => ['required'],
 
-  
+
         ]);
     }
 
     public function add(Request $request)
     {
         $validator=$this->validator($request->all());
-        
+
        if(!$validator->fails())
        {
            $user= $this->create($request->all());
-           
-           
-           
+
+
+
            return response()->json
            ([
-           		
-           		
+
+
                'success' =>  true,
                'data' => $user,
-               
+
                //'token' => $token
            ],200);
        }
        return response()->json([
-           
+
            'success' =>false,
            'errors' => $validator->errors()
-           
+
        ]);
     }
 
 
 
     protected function create(array $data)
-    { 	
+    {
 			$request = request();
 	    	 if($request->file('upload_file')!=null)
         	 {
@@ -82,7 +82,7 @@ class StudyMaterialsController extends Controller
 	           	 'upload_file' => $new_file,
 	           	 'topic' => $data['topic'],
 
-	     
+
 	        ]);
 
 	        if($data!=null)
@@ -90,10 +90,10 @@ class StudyMaterialsController extends Controller
 	            $success = $file->move($upload_path, $fileSaveAsName);
 	        }
 
-	       return $data;  
+	       return $data;
 
     }
-  
+
         public function show(Request $request,$id)
     {
 
@@ -112,7 +112,7 @@ class StudyMaterialsController extends Controller
 
 
 		public function update(Request $request, $id)
-		{	
+		{
 			 $task = material::findOrFail($id);
 
 			 $request = request();
@@ -132,23 +132,23 @@ class StudyMaterialsController extends Controller
 	              $new_file =  $fileSaveAsName;
 
 	        }
-	        
+
 
 		      $this->validate($request, [
 	          'title' => 'required',
 	          'description' => 'required',
 	          'subject' =>  'required',
 	          'course'  => 'required',
-	          
-
-	           ]);	
 
 
-		    
+	           ]);
+
+
+
 
 	           $data  = DB::table('materials')
 		      		->where('id',$id)
-		      		->update([ 
+		      		->update([
 
 		      			'upload_file' => $new_file,
 		      			'title' => $request->title,
@@ -164,7 +164,7 @@ class StudyMaterialsController extends Controller
 		    if (File::exists($path)) {
 			        File::delete($path);
 
-		       }	
+		       }
 
 		        $file->move($upload_path, $fileSaveAsName);
 
@@ -172,7 +172,7 @@ class StudyMaterialsController extends Controller
         	 return response()->json
                ([
                    'success' =>  true,
-                   
+
 
                ],200);
 
@@ -202,7 +202,7 @@ class StudyMaterialsController extends Controller
 			 return response()->json
 		           ([
 		               'success' =>  true,
-		               
+
 
 		           ],200);
 
@@ -215,5 +215,5 @@ class StudyMaterialsController extends Controller
 		}
 
 
-		
+
 }
