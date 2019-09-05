@@ -304,6 +304,8 @@ Route::group([ 'prefix' =>'/materials',
                 Route::get('/centre/{center_name}', 'Attendence\AttendenceController@getclasses');
                 Route::post('/students', 'Attendence\AttendenceController@getstudents');
                 Route::post('/attendence', 'Attendence\AttendenceController@add');
+                Route::post('/index','Attendence\AttendenceController@index');
+                Route::post('/show','Attendence\AttendenceController@show');
                
 
              }

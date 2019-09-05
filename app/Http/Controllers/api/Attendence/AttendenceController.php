@@ -47,5 +47,44 @@ class AttendenceController extends Controller
 
 		],200);
 	}
+
+	public function index(Request $request)
+	{
+
+		return attendence::where('center_name',$request->centre)
+						->where('class_name',$request->class)
+						->where('date',$request->date)
+						->get();
+
+	}
+
+	public function show(Request $request)
+	{
+
+		$data = attendence::where('center_name',$request->centre)
+						->where('class_name',$request->class)
+						->where('s_id',$request->s_id)
+						->get(['status','date']);
+
+		$count = $data->count();
+		$present = 0;
+		foreach ($data as $key => $datum) {
+			if($datum['status']==1)
+			{
+				$present++;
+			}
+		}
+
+		$absent = $count - $present;
+
+		return response()->json([
+
+			'data' => $data,
+			'count' => $count,
+			'present' => $present,
+			'absent' => $absent,
+		]);				
+
+	}
     
 }
