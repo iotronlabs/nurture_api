@@ -7,10 +7,24 @@ use App\Models\Attendence\attendence;
 use App\Models\classes\table_classes;
 use App\Models\student\user_student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class AttendenceController extends Controller
 {
 
+
+    protected function validator(array $data)
+    {
+        $combineunique = Rule::unique('attendences')->where('s_id',$data['s_id'])
+                                                    ->where('date',$data['date']);
+
+        return Validator::make($data,[
+
+            's_id' => $combineunique,
+
+        ]);
+    }
 	public function getclasses($center_name)
 	{
 		return table_classes::where('class_centre_name',$center_name)->get('class_name');
@@ -21,32 +35,46 @@ class AttendenceController extends Controller
 		return user_student::where('s_centre',$data->centre_name)
 						->where('s_class',$data->class_name)
 						->get(['s_id','s_fname','s_surname']);
-       
+
 	}
 
 	public function add(Request $request)
 	{
 		foreach($request->students as $student)
 		{
-			attendence::create([
+            $validator=$this->validator($student);
 
-				 'center_name' => $student['centre_name'],
-				 'class_name' => $student['class_name'],
-				 's_id' => $student['s_id'],
-				 's_fname' => $student['s_fname'],
-				 's_surname' => $student['s_surname'],
-				 'status' => $student['status'],
-				 'date' => $student['date']
+            if(!$validator->fails())
+            {
+                attendence::create([
 
-			]);
-		}
+                    'center_name' => $student['centre_name'],
+                    'class_name' => $student['class_name'],
+                    's_id' => $student['s_id'],
+                    's_fname' => $student['s_fname'],
+                    's_surname' => $student['s_surname'],
+                    'status' => $student['status'],
+                    'date' => $student['date']
 
-		return response()->json
-		([
-			'success' => true,
+                ]);
+            }
+            else
+            {
+                 return response()->json
+                    ([
+                        'success' => false,
+                        'message' => 'Already recorded'
+                    ],200);
 
-		],200);
-	}
+            }
+        }
+
+        return response()->json
+        ([
+            'success' => true,
+
+        ],200);
+    }
 
 	public function index(Request $request)
 	{
@@ -83,8 +111,8 @@ class AttendenceController extends Controller
 			'count' => $count,
 			'present' => $present,
 			'absent' => $absent,
-		]);				
+		]);
 
 	}
-    
+
 }

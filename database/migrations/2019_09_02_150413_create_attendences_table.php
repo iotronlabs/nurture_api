@@ -23,6 +23,8 @@ class CreateAttendencesTable extends Migration
             $table->boolean('status');
             $table->string('date');
             $table->timestamps();
+
+            $table->unique(['s_id','date']);
         });
     }
 
